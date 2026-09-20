@@ -4,9 +4,12 @@ import { createMpaPlugin } from "vite-plugin-virtual-mpa";
 import { resolve } from "path";
 import { readFileSync } from "fs";
 import { getContentFromDirectory, formatDate, estimateReadingTime } from "./lib/content.js";
-import { generateBlogCard, generateSourceBlock } from "./lib/templates.js";
+import { generateBlogCard, generateSourceBlock, url } from "./lib/templates.js";
 
 const __dirname = resolve();
+
+// GitHub Pages deploy di subpath /jejak-edu/. Set VITE_BASE="/" untuk root domain.
+const BASE = process.env.VITE_BASE || "/jejak-edu/";
 
 const blogDir = resolve(__dirname, "content/blog");
 const blogPosts = getContentFromDirectory(blogDir, {
@@ -64,6 +67,7 @@ const pages = [
       description:
         "Data dan konteks pendidikan Malaysia untuk pelajar, ibu bapa dan guru. PISA, Kurikulum 2027, data gaji graduan.",
       activePage: "home",
+      url,
       content: generateHomepageContent(),
     },
   },
@@ -75,6 +79,7 @@ const pages = [
       description:
         "7,339 rekod gaji anonim Malaysia. Median ikut industri, jawatan, tahap dan pendidikan.",
       activePage: "gaji",
+      url,
       content: gajiContent,
     },
   },
@@ -86,6 +91,7 @@ const pages = [
       description:
         "Prinsip editorial dan sumber data Jejak Edu. Data sebelum pendapat.",
       activePage: "about",
+      url,
       content: aboutContent,
     },
   },
@@ -96,6 +102,7 @@ const pages = [
       title: "Artikel — Jejak Edu",
       description: "Konteks pendidikan Malaysia — dasar, data dan apa maknanya untuk anda.",
       activePage: "blog",
+      url,
       content: generateBlogListContent(),
     },
   },
@@ -107,6 +114,7 @@ const pages = [
       title: `${post.frontmatter.title} — Jejak Edu`,
       description: post.frontmatter.description,
       activePage: "blog",
+      url,
       content: generateBlogPostContent(post),
     },
   })),
@@ -123,6 +131,7 @@ const rewrites = [
 ];
 
 export default defineConfig({
+  base: BASE,
   plugins: [
     tailwindcss(),
     createMpaPlugin({
