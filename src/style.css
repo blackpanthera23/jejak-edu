@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Jejak Edu — tema neutral editorial, bukan template startup */
+:root {
+  color-scheme: light;
+}
+
+article.prose {
+  --tw-prose-body: #334155;
+  --tw-prose-headings: #0f172a;
+  --tw-prose-links: #0f766e;
+  --tw-prose-bold: #0f172a;
+  --tw-prose-quotes: #475569;
+  --tw-prose-quote-borders: #0d9488;
+  --tw-prose-hr: #e2e8f0;
+  --tw-prose-th-borders: #cbd5e1;
+  --tw-prose-td-borders: #e2e8f0;
+}
+
+article.prose h2 {
+  scroll-margin-top: 5rem;
+  margin-top: 2.5rem;
+}
+article.prose h3 {
+  scroll-margin-top: 5rem;
+}
+article.prose table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+article.prose blockquote {
+  font-style: normal;
+}
+
+.stat-num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}

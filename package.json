@@ -1,0 +1,23 @@
+{
+  "name": "jejak-edu",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "alpinejs": "^3.15.3",
+    "vite": "^7.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "@tailwindcss/typography": "^0.5.13",
+    "gray-matter": "^4.0.3",
+    "marked": "^17.0.1",
+    "tailwindcss": "^4.1.18",
+    "vite-plugin-virtual-mpa": "^1.12.1"
+  }
+}
