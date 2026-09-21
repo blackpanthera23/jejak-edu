@@ -51,6 +51,37 @@ function kanonik(slug) {
   return `${b}/${p}/${s}`;
 }
 
+/**
+ * Serialize JSON supaya SELAMAT dimasukkan ke dalam blok <script>.
+ *
+ * KENAPA INI WAJIB
+ * ----------------
+ * Parser HTML tidak tahu apa-apa tentang JavaScript. Ia menamatkan blok <script>
+ * pada urutan literal `</script`, walau di mana ia muncul — termasuk di dalam
+ * string JSON. `JSON.stringify` TIDAK escape `<`, `>` atau `/`, jadi:
+ *
+ *   title = '"</script><script>alert(1)</script>'
+ *   =>  <script type="application/ld+json">{"headline":""</script><script>alert(1)</script>""}</script>
+ *
+ * Parser menutup blok JSON-LD pada `</script>` pertama, dan bakinya menjadi tag
+ * <script> inline yang SEBENAR dan akan LAKSANA. Ini XSS tersimpan (stored XSS):
+ * mana-mana frontmatter — title, description, nama penulis — boleh mencetusnya,
+ * dan sauh itu terbit ke produksi sebagai HTML statik.
+ *
+ * Escaping `<` sebagai \u003c menutup vektor ini sepenuhnya: JSON yang dihasilkan
+ * tetap mengekod nilai yang sama persis selepas JSON.parse, tetapi HTML parser
+ * tidak lagi melihat `<` untuk ditafsir. `\u2028`/`\u2029` juga diescape kerana
+ * ia adalah terminator baris yang sah dalam JSON tetapi haram dalam JS literal.
+ */
+function jsonSelamatUntukScript(nilai) {
+  return JSON.stringify(nilai)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
+}
+
 
 /** Normalisasi medan `penulis` — terima string, objek, atau senarai kedua-duanya. */
 function namaPenulis(medan) {
@@ -86,10 +117,10 @@ function jsonLdUntuk({ jenis, title, description, slug, tarikh, kategori, penuli
     if (penulis && penulis.length) {
       graf.author = penulis.map((n) => ({ "@type": "Person", name: n }));
     }
-    return `<script type="application/ld+json">${JSON.stringify(graf)}</script>`;
+    return `<script type="application/ld+json">${jsonSelamatUntukScript(graf)}</script>`;
   }
   if (jenis === "dataset") {
-    return `<script type="application/ld+json">${JSON.stringify({
+    return `<script type="application/ld+json">${jsonSelamatUntukScript({
       "@context": "https://schema.org",
       "@type": "Dataset",
       name: title,
@@ -103,7 +134,7 @@ function jsonLdUntuk({ jenis, title, description, slug, tarikh, kategori, penuli
   }
   // Lalai: WebSite + Organization pada halaman utama, WebPage untuk yang lain
   if (jenis === "laman-utama") {
-    return `<script type="application/ld+json">${JSON.stringify({
+    return `<script type="application/ld+json">${jsonSelamatUntukScript({
       "@context": "https://schema.org",
       "@graph": [
         org,
@@ -111,7 +142,7 @@ function jsonLdUntuk({ jenis, title, description, slug, tarikh, kategori, penuli
       ],
     })}</script>`;
   }
-  return `<script type="application/ld+json">${JSON.stringify({
+  return `<script type="application/ld+json">${jsonSelamatUntukScript({
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: title,
