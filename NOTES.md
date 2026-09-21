@@ -92,8 +92,30 @@ Page auto-generate di `/blog/slug-artikel.html`. Tiada langkah manual.
 ## Verify sebelum kata selesai
 
 ```bash
-npm run build
+npm run build      # jalankan vite + rewrite-base + gen-sitemap + verify-build
+npm run verify     # gate sahaja, atas dist/ yang sedia ada
 ```
+
+### Gate automatik — `scripts/verify-build.mjs`
+
+Berjalan sebagai langkah TERAKHIR `npm run build`, jadi build **gagal** dan artifact
+**tidak naik** ke GitHub Pages kalau ada masalah. Ia menangkap:
+
+| Semakan | Kenapa |
+|---|---|
+| Setiap `<loc>` dalam `sitemap.xml` ada fail padanan dalam `dist/` | Sitemap yang menunjuk ke 404 merosakkan crawl dan nampak seperti laman rosak di Search Console |
+| Tiada placeholder `<%` tertinggal dalam HTML | Template tidak dirender tidak menyebabkan build gagal, jadi ia boleh terbit diam-diam |
+| Tiada link dalaman yang menunjuk ke fail yang tidak wujud | Nav/footer dikongsi 21 halaman — satu entri mati = 21 halaman dengan link mati |
+| (amaran) halaman dalam `dist/` tiada dalam sitemap | Halaman yang dilupakan tidak akan diindeks |
+
+Jangan lumpuhkan gate ini untuk "lepas" deploy. Kalau ia gagal, betulkan puncanya.
+
+**Amaran penting — deploy cache:** selepas push, GitHub Pages mengambil masa
+**30-90 saat** untuk menyebarkan artifact. Smoke test sebaik sahaja selepas deploy
+akan nampak **404 palsu** pada sesetengah halaman walaupun deploy berjaya (pernah
+berlaku: 1 daripada 3 halaman dalam commit sama pulang 404, semuanya 200 selepas
+retry). Tunggu 60 saat, kemudian curl 3 kali berturutan sebelum simpulkan ada bug.
+Jangan "baiki" apa-apa berdasarkan satu semakan 404.
 
 Kemudian **semak sebenar** (bukan andaikan):
 

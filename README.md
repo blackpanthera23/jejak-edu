@@ -9,8 +9,13 @@ MVP portal pendidikan Malaysia — data dan konteks untuk pelajar, ibu bapa dan 
 ```bash
 npm install
 npm run dev      # http://localhost:5173
-npm run build    # output ke dist/
+npm run build    # vite + rewrite-base + gen-sitemap + verify-build → dist/
+npm run verify   # gate sahaja, atas dist/ yang sedia ada
 ```
+
+`npm run build` **gagal** kalau gate `verify-build.mjs` menemui masalah (sitemap
+mendakwa halaman yang tidak wujud, placeholder `<%` tertinggal, atau link dalaman
+mati). Artifact rosak tidak boleh naik ke GitHub Pages. Butiran: `NOTES.md`.
 
 ## Struktur
 
@@ -19,6 +24,7 @@ content/blog/       Artikel markdown (frontmatter: title, slug, date, descriptio
 templates/          blog-list.html, blog-post.html
 lib/content.js      Parse markdown + reading time
 lib/templates.js    Blog card + source block generator
+scripts/            rewrite-base.mjs, gen-sitemap.mjs, verify-build.mjs
 index.html          Homepage
 gaji.html           Data gaji graduan (7,339 rekod)
 about.html          Tentang + prinsip editorial

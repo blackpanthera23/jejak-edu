@@ -25,6 +25,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # Gate: verify-build.mjs sudah dijalankan dalam `npm run build` dan akan
+      # menghentikan job kalau sitemap mendakwa halaman yang tidak wujud, ada
+      # placeholder "<%" tertinggal, atau ada link dalaman mati. Artifact di
+      # bawah hanya diupload selepas gate lulus — jadi build rosak tidak boleh
+      # terbit ke Pages.
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

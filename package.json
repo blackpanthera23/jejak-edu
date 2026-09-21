@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/rewrite-base.mjs && node scripts/gen-sitemap.mjs",
+    "build": "vite build && node scripts/rewrite-base.mjs && node scripts/gen-sitemap.mjs && node scripts/verify-build.mjs",
+    "verify": "node scripts/verify-build.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -19,5 +20,8 @@
     "marked": "^17.0.1",
     "tailwindcss": "^4.1.18",
     "vite-plugin-virtual-mpa": "^1.12.1"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
