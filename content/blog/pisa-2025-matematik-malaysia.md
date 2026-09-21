@@ -4,6 +4,14 @@ slug: pisa-2025-matematik-malaysia
 date: 2026-09-19
 description: "Sains naik, bacaan naik, matematik turun 11 mata. Dan satu paradoks dalam data yang mungkin lebih penting daripada ketiga-tiga angka itu."
 kategori: Data
+penulis: "Team Jejak Edu"
+penulis_slug: team-jejak-edu
+tldr:
+  - "Sains naik 3 mata ke 419; bacaan naik 5 mata; matematik turun 11 mata ke 397."
+  - "Ini penurunan matematik ketiga berturut-turut — 2018, 2022, dan 2025."
+  - "Hanya 35% pelajar Malaysia mencapai Tahap 2 matematik; 65% tidak."
+  - "Malaysia skor 484 dalam computational problem solving, berbanding 500 purata OECD."
+  - "Perbualan ibu bapa dengan anak tentang sekolah turun dari 46% (2022) ke 34% (2025)."
 sumber:
   - "PISA 2025 — Programme for International Student Assessment, OECD"
   - "Kenyataan Menteri Pendidikan Malaysia mengenai keputusan PISA 2025"

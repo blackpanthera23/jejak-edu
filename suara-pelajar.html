@@ -1,0 +1,904 @@
+<div class="py-12">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <header class="mb-10">
+      <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-full border bg-amber-50 text-amber-700 border-amber-200 mb-4">Suara</span>
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight mb-4">Suara Pelajar</h1>
+      <p class="text-lg text-slate-600 leading-relaxed">
+        Cerita pelajar Malaysia, dihantar tanpa nama. Tiada nama penuh, tiada nama sekolah.
+      </p>
+      <a href="#hantar" class="mt-5 inline-flex items-center justify-center gap-2 min-h-11
+         px-5 py-3 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-semibold
+         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700
+         focus-visible:ring-offset-2 transition-colors">
+        Hantar cerita anda
+      </a>
+    </header>
+
+    <section x-data="tldrModul()" x-init="init()" class="mb-10" aria-labelledby="tldr-tajuk">
+      <div class="bg-teal-50 border border-teal-200 rounded-xl overflow-hidden">
+        <details open data-tldr class="group">
+          <summary class="flex items-center justify-between gap-3 px-5 py-4 cursor-pointer
+                          list-none focus-visible:outline-none focus-visible:ring-2
+                          focus-visible:ring-teal-700 focus-visible:ring-inset">
+            <h2 id="tldr-tajuk" class="text-sm font-bold text-teal-800 uppercase tracking-wide">Ringkasan Pantas</h2>
+            <span class="text-xs text-teal-700 font-semibold" aria-hidden="true">
+              <span class="group-open:hidden">Buka</span>
+              <span class="hidden group-open:inline">Tutup</span>
+            </span>
+          </summary>
+          <div class="px-5 pb-5">
+            <ul class="space-y-2.5 text-slate-800 leading-relaxed">
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Masalah kesihatan mental kanak-kanak 5–15 tahun berganda daripada 7.9% (2019) kepada 16.5% (2023) — NHMS.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Kajian 33,523 pelajar menengah: 79.1% pernah terlibat dalam buli — 14.4% pembuli, 16.3% mangsa, 48.4% kedua-duanya.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>79.8% pelajar Malaysia menghadiri kelas tusyen (2024), naik daripada ~60% pada 2020.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>72.1% pelajar tidak menyambung pengajian selepas SPM (kaji selidik DOSM 2019).</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Borang hantaran tanpa nama di bawah: 3 medan wajib, tiada emel, tiada pendaftaran.</span></li>
+            </ul>
+            <p class="mt-4 pt-4 border-t border-teal-200 text-xs text-teal-800">
+              Ringkasan ini bukan pengganti halaman penuh. Setiap angka ada tahun data dan sumber di bawah.
+            </p>
+          </div>
+        </details>
+      </div>
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        <button type="button" @click="bukaPenuh()"
+                :aria-expanded="terbuka ? 'true' : 'false'"
+                aria-controls="kandungan-penuh"
+                class="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-3 rounded-lg
+                       bg-teal-700 hover:bg-teal-800 text-white font-semibold transition-colors
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700
+                       focus-visible:ring-offset-2">
+          <span x-text="terbuka ? 'Tutup balik' : 'Baca penuh'">Baca penuh</span>
+          <svg class="w-4 h-4 transition-transform" :class="terbuka && 'rotate-180'"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
+
+      <nav id="senarai-seksyen" aria-label="Peta kandungan halaman" class="mt-4 bg-white border border-stone-500 rounded-xl p-5">
+        <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wide mb-3">Kandungan</h2>
+        <ol class="space-y-1">
+          <li><a href="#kesihatan-mental" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">1</span><span class="text-sm">Kesihatan mental pelajar</span></a></li>
+          <li><a href="#buli" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">2</span><span class="text-sm">Buli</span></a></li>
+          <li><a href="#tekanan-akademik" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">3</span><span class="text-sm">Tekanan akademik dan tusyen</span></a></li>
+          <li><a href="#jurang" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">4</span><span class="text-sm">Jurang luar bandar vs bandar</span></a></li>
+          <li><a href="#suara-pelajar-awam" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">5</span><span class="text-sm">Suara pelajar dari platform awam</span></a></li>
+          <li><a href="#bantuan" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">6</span><span class="text-sm">Program bantuan yang membantu</span></a></li>
+          <li><a href="#hantar" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">7</span><span class="text-sm">Hantar cerita anda</span></a></li>
+        </ol>
+      </nav>
+    </section>
+
+    <div id="kandungan-penuh" class="space-y-12">
+
+      <!-- ============ 1 ============ -->
+      <section id="kesihatan-mental" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Kesihatan mental pelajar</h2>
+
+        <div class="grid gap-4 sm:grid-cols-2 mb-5">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">NHMS 2023 — kanak-kanak 5–15 tahun</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">16.5%</p>
+            <p class="text-sm text-slate-600 mt-1">naik dua kali ganda daripada 7.9% (424,000 orang) pada 2019 kepada 16.5% (922,318 orang) pada 2023</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Talian HEAL 15555 — sejak Okt 2022</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">230,151</p>
+            <p class="text-sm text-slate-600 mt-1">panggilan setakat Julai 2026. 27,738 (2023) → 42,990 (2024) → 90,981 (2025)</p>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Tingkah laku bunuh diri (2012 → 2022)</h3>
+        <div class="space-y-3 mb-6">
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <span class="text-sm font-semibold text-slate-900">Idea bunuh diri</span>
+              <span class="text-sm font-bold text-teal-700 tabular-nums stat-num">7.9% → 13.1%</span>
+            </div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:13.1%"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <span class="text-sm font-semibold text-slate-900">Pelan bunuh diri</span>
+              <span class="text-sm font-bold text-teal-700 tabular-nums stat-num">6.4% → 10.0%</span>
+            </div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:10%"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <span class="text-sm font-semibold text-slate-900">Cubaan bunuh diri</span>
+              <span class="text-sm font-bold text-teal-700 tabular-nums stat-num">6.8% → 9.5%</span>
+            </div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:9.5%"></div></div>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 border-2 border-amber-600 rounded-xl p-5 mb-6">
+          <h3 class="font-bold text-amber-900 mb-2">Dua angka yang bercanggah — dan kedua-duanya betul</h3>
+          <p class="text-sm text-amber-900 leading-relaxed mb-3">
+            KPM melaporkan trend <strong>menurun</strong> (2025): gejala awal kebimbangan sekolah rendah
+            6.52% → 5.75%; depresi sekolah menengah 2.21% → 0.80%.
+          </p>
+          <p class="text-sm text-amber-900 leading-relaxed">
+            Kajian UCSI University (dibentangkan Okt 2025) mendapati <strong>&gt;60% pelajar sekolah</strong>
+            mengalami gejala depresi, tekanan dan kebimbangan, dan hanya <strong>33% (1 dalam 3)</strong>
+            berada dalam julat kesihatan mental normal. Dua angka ini mengukur perkara berbeza:
+            KPM mengukur <strong>"gejala awal teruk"</strong> melalui saringan; UCSI mengukur
+            <strong>prevalens gejala</strong> melalui kajian pensampelan.
+          </p>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Perkhidmatan kesihatan mental KKM</h3>
+        <ul class="space-y-2.5 text-sm text-slate-700 mb-5">
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>1,088 Klinik Kesihatan</strong>, <strong>68 hospital</strong>, <strong>37 Pusat Kesihatan Mental Masyarakat (Mentari)</strong>, <strong>200 Pegawai Psikologi (Kaunseling) CFS</strong> di daerah dan klinik</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Sasaran <strong>30 pakar psikiatri kanak-kanak dan remaja</strong> menjelang 2027 — kini <strong>18 orang</strong></span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Panggilan berkaitan tingkah laku bunuh diri ke talian krisis: <strong>&gt;48,000</strong> dari 2022 hingga Jun 2024</span></li>
+        </ul>
+
+        <p class="text-slate-600 leading-relaxed">
+          Kajian universiti: prevalens depresi pelajar universiti Malaysia sehingga
+          <strong>31%</strong>, kebimbangan sehingga <strong>60%</strong>, tekanan sehingga
+          <strong>26%</strong>. Peningkatan dalam dekad: masalah kesihatan mental pelajar berganda
+          daripada <strong>10% (2011)</strong> kepada <strong>20% (2016)</strong>.
+        </p>
+        <p class="mt-3 text-xs text-slate-600">
+          Sumber: Institut Kesihatan Umum (IKU) — NHMS 2023 Fact Sheet; Astro Awani (4 Dis 2024);
+          The Star (9 Julai 2026); Malay Mail (9 Julai 2024); Sinar Daily (17 Okt 2025);
+          The Malaysian Reserve (4 Nov 2025).
+        </p>
+      </section>
+
+      <!-- ============ 2 ============ -->
+      <section id="buli" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Buli</h2>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Kes buli sekolah mengikut tahun, Sistem Sahsiah Diri Murid KPM</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Tahun</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Jumlah kes</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Rendah</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Menengah</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">2022</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">3,883</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">2023</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">6,528</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">1,110</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">—</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-semibold text-teal-900">2024</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">7,681</td><td class="px-4 py-3 text-right tabular-nums text-teal-900">1,992</td><td class="px-4 py-3 text-right tabular-nums text-teal-900">5,689</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">2025</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">2,889</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">740</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">2,149</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Setakat 31 Okt 2025</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">5,703</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-5 text-xs text-slate-600">
+          Sumber: Sistem Sahsiah Diri Murid (SSDM), KPM. <strong>Konflik angka:</strong> dua set angka
+          beredar untuk 2024/2025 — <strong>7,681 (2024)</strong> vs <strong>2,889 (2025)</strong>.
+          KPM menjelaskan angka 2024 yang tinggi adalah hasil <strong>peningkatan tahap kesedaran dan
+          pematuhan pelaporan</strong> sekolah terhadap SPI Bil. 12 Tahun 2023, bukan semestinya
+          lonjakan insiden sebenar.
+        </p>
+
+        <div class="grid gap-4 sm:grid-cols-2 mb-5">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Lonjakan sekolah rendah</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">+79%</p>
+            <p class="text-sm text-slate-600 mt-1">kes buli sekolah rendah antara 2023 (1,110) dan 2024 (1,990)</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Risiko kemurungan</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">3 kali</p>
+            <p class="text-sm text-slate-600 mt-1">kanak-kanak yang pernah menjadi mangsa buli berbanding yang tidak pernah dibuli</p>
+          </div>
+        </div>
+
+        <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed mb-5">
+          "Kanak-kanak berusia tujuh hingga 12 tahun sepatutnya berada dalam fasa awal perkembangan,
+          tetapi kini sudah terbabit sama ada sebagai mangsa mahupun pembuli."
+          <span class="block mt-2 text-xs text-slate-600">Pesuruhjaya Kanak-Kanak, Dr Farah Nini Dusuki (Sept 2025)</span>
+        </blockquote>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Kajian besar: 33,523 pelajar menengah</h3>
+        <p class="text-slate-600 leading-relaxed mb-3">
+          Dibentangkan Jawatankuasa Pilihan Khas Parlimen (Dis 2025): <strong>79.1%</strong> responden
+          pernah terlibat dalam buli.
+        </p>
+        <div class="space-y-3 mb-4">
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1"><span class="text-sm font-semibold text-slate-900">Kedua-duanya (pembuli dan mangsa)</span><span class="text-sm font-bold text-teal-700 tabular-nums stat-num">48.4%</span></div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:48.4%"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1"><span class="text-sm font-semibold text-slate-900">Mangsa</span><span class="text-sm font-bold text-teal-700 tabular-nums stat-num">16.3%</span></div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:16.3%"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1"><span class="text-sm font-semibold text-slate-900">Pembuli</span><span class="text-sm font-bold text-teal-700 tabular-nums stat-num">14.4%</span></div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:14.4%"></div></div>
+          </div>
+        </div>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Angka 48.4% "kedua-duanya" menunjukkan <strong>mangsa boleh menjadi pembuli tanpa intervensi
+          yang betul</strong>.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Kalau anda sedang dibuli</h3>
+        <div class="bg-white border border-stone-500 rounded-xl p-5 mb-5">
+          <ul class="space-y-3 text-sm text-slate-700">
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Portal Aduan Buli KPM</strong> — aduanbuli.moe.gov.my; saluran SISPAA; telefon <strong>03-8884 9325</strong>; WhatsApp <strong>014-800 9325</strong>. Hanya untuk buli dalam kalangan murid di sekolah.</span></li>
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>SPI Bil. 12 Tahun 2023</strong> — Garis Panduan Pengurusan Salah Laku Buli di Institusi Pendidikan bawah KPM</span></li>
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>SPI Bil. 7 Tahun 2011</strong> — SOP 1:3:7: Pelaporan dan Tindakan Menangani Isu Disiplin Murid</span></li>
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Guru Bimbingan dan Kaunseling</strong> — 523 penempatan baharu di seluruh negara pada 2025</span></li>
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Rang Undang-Undang Anti-Buli</strong> sedang digubal dengan cadangan sistem tribunal (2025)</span></li>
+          </ul>
+        </div>
+
+        <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed">
+          "Mengurus kesihatan mental kanak-kanak memerlukan perkhidmatan profesional dan pengurusan
+          sistematik. Kita tidak boleh bergantung semata-mata pada guru kerana ini bukan kepakaran
+          utama mereka, dan mereka sudah terbeban dengan tugas biasa."
+          <span class="block mt-2 text-xs text-slate-600">Yeo Bee Yin, Pengerusi Jawatankuasa Pilihan Khas Parlimen Wanita, Kanak-kanak dan Pembangunan Masyarakat (Dis 2025)</span>
+        </blockquote>
+        <p class="mt-4 text-xs text-slate-600">
+          Sumber: Bernama (26 Feb 2026); Sinar Harian (15 Dis 2024, 11 Sept 2025); The Star (3 Dis 2025);
+          KPM — Portal Aduan Buli; MKN — RUU Anti-Buli (16 Okt 2025).
+        </p>
+      </section>
+
+      <!-- ============ 3 ============ -->
+      <section id="tekanan-akademik" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Tekanan akademik dan tusyen</h2>
+
+        <div class="grid gap-4 sm:grid-cols-2 mb-5">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Tusyen (2024)</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">79.8%</p>
+            <p class="text-sm text-slate-600 mt-1">pelajar Malaysia menghadiri kelas tusyen — ~8 daripada 10, naik daripada ~60% pada 2020. ~8 jam seminggu merentasi ~5 subjek.</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Hari pembelajaran</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">10 jam</p>
+            <p class="text-sm text-slate-600 mt-1">sekolah 7:00 pagi–3:00 petang, diikuti tusyen 4:00–6:00 petang</p>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Kos tusyen (kadar 2024–2026, Lembah Klang)</h3>
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Kos tusyen mengikut jenis</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Jenis</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Kos</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">Pusat tusyen, kumpulan besar (15–30 murid)</td><td class="px-4 py-3 font-semibold tabular-nums text-slate-900">RM80–150 / subjek / bulan</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Kumpulan dalam talian</td><td class="px-4 py-3 font-semibold tabular-nums text-slate-900">RM60–200 / subjek / bulan</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Tutor rumah 1:1</td><td class="px-4 py-3 font-semibold tabular-nums text-slate-900">RM40–150 sejam</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Kurikulum antarabangsa</td><td class="px-4 py-3 font-semibold tabular-nums text-slate-900">RM100–300 sejam</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Program ulang kaji intensif SPM</td><td class="px-4 py-3 font-semibold tabular-nums text-slate-900">RM500–3,000 / program</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-6 text-xs text-slate-600">Kos mengikut peringkat (2024–2025): sekolah rendah RM80–200; menengah rendah RM100–250; menengah atas RM150–350; kelas intensif SPM RM200–400 per subjek sebulan.</p>
+
+        <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed mb-4">
+          "Saya tidur lewat kerana perlu menyiapkan kerja rumah... Saya bersumpah, saya letih."
+          <span class="block mt-2 text-xs text-slate-600">Pelajar Tingkatan 5, dipetik melalui The Sun (2026). Beliau menerangkan kelas tambahan enam hari seminggu, hari sekolah 7 pagi–4.30 petang, diikuti kerja rumah hingga lewat malam.</span>
+        </blockquote>
+        <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed mb-4">
+          "Tidur tidak akan pernah cukup dan itulah harga yang perlu kami bayar untuk cemerlang akademik."
+          <span class="block mt-2 text-xs text-slate-600">Komen pelajar dalam perbincangan awam (The Sun)</span>
+        </blockquote>
+
+        <p class="text-slate-600 leading-relaxed mb-3">
+          Seorang pelajar yang baru tamat Tingkatan 5 di sekolah berasrama menggambarkan pengalaman itu
+          sebagai <strong>"mental hell"</strong>; jadual harian <strong>6.30 pagi hingga 10 malam</strong>.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Penyelidik pendidikan menggelar sistem tusyen Malaysia sebagai
+          <strong>"sistem pendidikan bayangan"</strong> yang beroperasi bersanding dengan persekolahan
+          arus perdana.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Angka asas yang berkaitan</h3>
+        <ul class="space-y-2.5 text-sm text-slate-700">
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>175,304 (13%)</strong> kanak-kanak di hujung usia persekolahan rendah dilaporkan tidak mahir membaca (laporan Dokumen Keciciran Pendidikan Malaysia 2023, NGO Untuk Malaysia)</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Learning Poverty (World Bank):</strong> 42% kanak-kanak Malaysia pada usia lewat sekolah rendah tidak cekap membaca</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Jam pengajaran Matematik:</strong> 576 jam di sekolah rendah Malaysia — antara terendah di Asia Tenggara (SEA-PLM 2024). KPM menaikkannya kepada 608 jam menjelang 2027.</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>PISA 2022 — jurang sosioekonomi:</strong> jurang 82 mata dalam skor Sains antara pelajar daripada 25% teratas dan 25% terbawah latar belakang sosioekonomi (PAGE)</span></li>
+        </ul>
+      </section>
+
+      <!-- ============ 4 ============ -->
+      <section id="jurang" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Jurang luar bandar vs bandar</h2>
+
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Berdasarkan gred purata SPM 2024, jurang bandar–luar bandar mengecil sebanyak
+          <strong>26.23%</strong> di bawah PPPM 2013–2025. Sasaran: kurangkan <strong>50% lagi</strong>
+          menjelang 2035.
+        </p>
+
+        <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed mb-5">
+          "Apabila sekolah di kawasan luar bandar yang sudah membangun digabungkan dengan sekolah di
+          kawasan terpencil, angka luar bandar keseluruhan secara semula jadi akan bertambah baik.
+          Tetapi adakah itu bermakna sekolah paling terpencil juga telah bertambah baik?"
+          <span class="block mt-2 text-xs text-slate-600">Dr Anuar Ahmad, Timbalan Pengarah, Institut Minda, UKM. Cadangan beliau: tinggalkan klasifikasi bandar/luar bandar semasa dan perkenalkan tiga kategori — bandar, pinggir bandar, dan luar bandar terpencil.</span>
+        </blockquote>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Kadar keciciran murid</h3>
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Kadar keciciran murid mengikut peringkat dan tahun</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Peringkat</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">2017</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">2020</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">2023</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">2024</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">Rendah</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.29%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.06%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Menengah</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">1.36%</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">1.13%</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.83%</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.64%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-6 text-xs text-slate-600">
+          Pecahan bandar/luar bandar (2023): sekolah rendah — bandar <strong>0.37%</strong>,
+          luar bandar <strong>0.10%</strong>. Sekolah menengah — bandar <strong>3.13%</strong>,
+          luar bandar <strong>4.67%</strong>.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Orang Asli</h3>
+        <ul class="space-y-2.5 text-sm text-slate-700 mb-6">
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Kadar keciciran <strong>10% hingga hampir 43%</strong>; purata kadar lulus UPSR Orang Asli 2012–2016 ialah <strong>43.8%</strong> berbanding purata nasional <strong>86.5%</strong></span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>42.29%</strong> murid Orang Asli tidak tamat sekolah (Bernama, 2023)</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>60,800</strong> kanak-kanak Orang Asli berdepan masalah keciciran belajar pada 2020, meningkat kepada <strong>62,800</strong> pada 2021. Bagi setiap <strong>lima anak Orang Asli, dua orang tidak menamatkan persekolahan</strong>.</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Sebebab paling kerap disebut: <strong>kemiskinan, buli, perkauman, dan kekurangan infrastruktur</strong></span></li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Selepas SPM</h3>
+        <div class="grid gap-4 sm:grid-cols-3 mb-4">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Tidak menyambung</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">72.1%</p>
+            <p class="text-sm text-slate-600 mt-1">pelajar tidak menyambung pengajian selepas SPM (kaji selidik DOSM 2019)</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Keciciran SPM</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">211,544</p>
+            <p class="text-sm text-slate-600 mt-1">calon SPM 2019–2021 dikategorikan keciciran — purata ~18% setahun</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Dapat tempat IPTA (2026)</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">169,803</p>
+            <p class="text-sm text-slate-600 mt-1">pelajar lepas SPM 2025 melalui UPUOnline — 72% daripada pemohon</p>
+          </div>
+        </div>
+
+        <p class="text-slate-600 leading-relaxed mb-3">
+          Keciciran prasekolah: kanak-kanak 4–6 tahun tanpa pembelajaran pra-sekolah —
+          <strong>174,933 (17.1%)</strong> pada 2019, <strong>234,476 (22.2%)</strong> pada 2020,
+          <strong>286,861 (26.9%)</strong> pada 2021.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Kemudahan asas: <strong>1,061 sekolah</strong> seluruh negara dikategorikan Skala Tujuh
+          (bangunan tidak selamat) — suku pertama 2026. <strong>968 sekolah</strong> di Sabah
+          beroperasi pada bangunan daif (31 Dis 2025).
+        </p>
+
+        <div class="bg-white border border-stone-500 rounded-xl p-5">
+          <h3 class="font-bold text-slate-900 mb-2">Contoh USM sesi 2026/2027</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            Daripada <strong>37,171 permohonan</strong> melalui UPU, <strong>4,904</strong> mendapat
+            tempat dalam 79 program. <strong>2,241 (46%)</strong> pelajar yang ditawarkan adalah
+            kategori <strong>B40</strong>. <strong>216</strong> pelajar di bawah program Siswa Sulung
+            (peruntukan RM2.16 juta). Turut ditawarkan: <strong>17 orang OKU</strong>,
+            <strong>8 pelajar Orang Asli</strong>.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ 5 ============ -->
+      <section id="suara-pelajar-awam" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Suara pelajar dari platform awam</h2>
+
+        <div class="bg-amber-50 border-2 border-amber-600 rounded-xl p-5 mb-6">
+          <h3 class="font-bold text-amber-900 mb-2">Cara membaca bahagian ini</h3>
+          <p class="text-sm text-amber-900 leading-relaxed">
+            Petikan di bawah adalah <strong>suara individu dalam ruang awam</strong> — forum dan media
+            sosial yang sudah dipublikasikan. Ia gambaran tema berulang, <strong>bukan</strong> wakil
+            semua pelajar Malaysia, dan bukan asas generalisasi kuantitatif.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed">
+            "Saya pelajar terbaik yang dijangka mendapat Straight A1, tetapi akhirnya tidak cukup.
+            Dapat beberapa A2, dan satu B. Bukan gagal mengikut kebanyakan piawaian, tetapi mengikut
+            piawaian yang saya tetapkan untuk diri saya, ia pasti satu kegagalan."
+            <span class="block mt-2 text-xs text-slate-600">r/malaysia — "What was your SPM experience and how has it impacted your life?" (2023, 30+ komen)</span>
+          </blockquote>
+
+          <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed">
+            "Sebagai pelajar F5 2021, saya rasa Covid sangat menjejaskan pembelajaran kami. Ya, kami
+            ada PdPR tetapi ia tidak hampir seefektif..."
+            <span class="block mt-2 text-xs text-slate-600">r/malaysia — "Struggles of a 2021 SPM student (batch 2004)"</span>
+          </blockquote>
+
+          <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed">
+            "Bermain video game atau melakukan apa yang saya suka tidak lagi terasa sama, dan saya
+            tidak ada tenaga untuk berbual. Saya rasa letih sepanjang masa walaupun tidur awal dan
+            makan dengan baik."
+            <span class="block mt-2 text-xs text-slate-600">r/malaysiauni — "How does one deal with burnout, discipline and depression?" (2025–2026)</span>
+          </blockquote>
+
+          <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed">
+            "Bukankah STPM pada dasarnya A-level tetapi lebih murah? Ia hanya mengambil satu setengah
+            tahun dan diiktiraf oleh universiti luar negara."
+            <span class="block mt-2 text-xs text-slate-600">r/malaysia — "Why are STPM looked so down upon?"</span>
+          </blockquote>
+        </div>
+
+        <p class="mt-5 text-slate-600 leading-relaxed">
+          <strong>Threads</strong> menjadi platform utama perbincangan pelajar (2025–2026): tekanan
+          Tingkatan 5 dan jadual 10 jam; kes buli MRSM yang mencetuskan kebimbangan nasional;
+          guru tusyen yang tular selepas keputusan SPM 2025. Kajian akademik (2024) menyatakan
+          <strong>TikTok mendominasi sebagai pelantar paling popular</strong> dan menjadi sumber carian
+          maklumat dalam kalangan pelajar Malaysia; tinjauan Kearney (2026) mendapati
+          <strong>80% pengguna TikTok Malaysia</strong> menggunakan platform itu untuk pembelajaran,
+          budaya dan kesejahteraan.
+        </p>
+      </section>
+
+      <!-- ============ 6 ============ -->
+      <section id="bantuan" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Program bantuan yang membantu</h2>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Ini bukan senarai lengkap, dan bukan pengesahan kelayakan. Ia angka yang kami dapat sahkan
+          daripada sumber awam — supaya anda tahu program apa yang benar-benar berjalan.
+        </p>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Program bantuan pendidikan dan angkanya</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Program</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Skop</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Angka</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">KWAPM (KPM)</td><td class="px-4 py-3 text-slate-700">Murid miskin (eKasih, miskin tegar)</td><td class="px-4 py-3 text-slate-700">RM100 (rendah), RM150 (menengah); Bantuan Kecemasan RM300</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">Bantuan Awal Persekolahan</td><td class="px-4 py-3 text-slate-700"><strong>Semua</strong> murid Tahun 1–Ting 5</td><td class="px-4 py-3 text-slate-700">RM150 seorang; RM800 juta; 5.2 juta murid</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">Rancangan Makanan Tambahan</td><td class="px-4 py-3 text-slate-700">Murid miskin</td><td class="px-4 py-3 text-slate-700">RM870 juta (2025); &gt;860,000 murid</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">NADI Nurture DILEA</td><td class="px-4 py-3 text-slate-700">Pelajar 13–18 tahun, tusyen percuma</td><td class="px-4 py-3 text-slate-700">87,040 pelajar sejak Julai 2024; &gt;100 guru tusyen</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">Yayasan Hasanah</td><td class="px-4 py-3 text-slate-700">Literasi, pemulihan pembelajaran, kesihatan mental</td><td class="px-4 py-3 text-slate-700">&gt;88,000 pelajar di 1,769 sekolah; 4,446 pelajar sokongan kesihatan mental; 3,359 guru</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">MRSM</td><td class="px-4 py-3 text-slate-700">Pelajar cemerlang luar bandar/B40</td><td class="px-4 py-3 text-slate-700">&gt;93,000 memohon, hanya 8,909 mendapat tawaran (2025); 60% tempat untuk keluarga berpendapatan rendah dan luar bandar</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">Biasiswa Negeri Sabah</td><td class="px-4 py-3 text-slate-700">Pelajar Sabah</td><td class="px-4 py-3 text-slate-700">13,550 pelajar 2021–2024; peruntukan RM128 juta (2025) berbanding RM50 juta (2020)</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">Sabah State Education Fund</td><td class="px-4 py-3 text-slate-700">B40 tanpa penajaan</td><td class="px-4 py-3 text-slate-700">7,483 pelajar; RM8.6 juta</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">PETRONAS</td><td class="px-4 py-3 text-slate-700">Pelajar SPM cemerlang</td><td class="px-4 py-3 text-slate-700">&gt;650 pelajar (SPM 2024)</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">MARA / UniKL / UPTM</td><td class="px-4 py-3 text-slate-700">Bumiputera 10A SPM</td><td class="px-4 py-3 text-slate-700">Jaminan tempat + biasiswa penuh</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-5 text-xs text-slate-600 sm:hidden">Geser jadual ke kiri untuk melihat lebih banyak.</p>
+
+        <div class="bg-white border border-stone-500 rounded-xl p-5 mb-5">
+          <h3 class="font-bold text-slate-900 mb-2">Satu kritikan yang perlu didengar</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            Kadar keciciran Orang Asli yang tinggi berpunca daripada
+            <strong>kekurangan pemantauan dan penilaian</strong> program bantuan — bukan kekurangan
+            program. Itu bermakna menambah program bukan jawapan yang mencukupi.
+          </p>
+          <p class="mt-2 text-xs text-slate-600">Sumber: Bernama / The Borneo Post (1 Jan 2023)</p>
+        </div>
+
+        <p class="text-xs text-slate-600">
+          Sumber: KPM — KWAPM; KPM — Kenyataan Media Belanjawan 2025; Bernama; Yayasan Hasanah —
+          The Hasanah Report 2025; Malay Mail (13 Jan 2025); PETRONAS (8 Okt 2025).
+        </p>
+      </section>
+
+      <!-- ============ 7: BORANG ============ -->
+      <section id="hantar" class="anchor-sasaran" aria-labelledby="hantar-tajuk"
+               x-data="borangSuara()" data-endpoint="/api/suara-pelajar">
+        <h2 id="hantar-tajuk" class="text-2xl font-bold text-slate-900 mb-3">Hantar cerita anda</h2>
+        <p class="text-slate-600 leading-relaxed mb-6">
+          Tiga medan wajib. Tiada pendaftaran. Tiada emel. Tiada nombor telefon.
+        </p>
+
+        <!-- ---- Mesej awal: WAJIB sebelum medan pertama ---- -->
+        <section class="bg-teal-50 border border-teal-200 rounded-xl p-5 mb-8" aria-labelledby="sebelum-tulis">
+          <h3 id="sebelum-tulis" class="text-base font-bold text-teal-900 mb-3">Sebelum anda tulis</h3>
+          <dl class="space-y-3 text-sm text-teal-900 leading-relaxed">
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold shrink-0 sm:w-28">Nama anda</dt>
+              <dd>Kami tidak minta. Tiada pendaftaran. Tiada emel. Kalau anda taip nama sendiri dalam
+                  cerita, itu pilihan anda.</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold shrink-0 sm:w-28">Siapa baca</dt>
+              <dd>Dua penyunting Jejak Edu. Itu sahaja. Bukan guru anda, bukan sekolah, bukan pihak lain.</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold shrink-0 sm:w-28">Berapa lama</dt>
+              <dd>Kami semak dalam <strong>3 hari bekerja</strong>. Kalau diterbitkan, ia muncul dalam
+                  ruangan Suara Pelajar dalam masa 7 hari.</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold shrink-0 sm:w-28">Apa jadi</dt>
+              <dd>Tiga kemungkinan sahaja: diterbitkan seperti ditulis, diterbitkan dengan suntingan
+                  kecil (ejaan, nama dibuang), atau tidak diterbitkan. Kami tidak mengubah maksud
+                  cerita anda.</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold shrink-0 sm:w-28">Yang kami buang</dt>
+              <dd>Nama guru, nama sekolah, nama pelajar lain. Kami tidak akan terbitkan ini walaupun
+                  anda tulis.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- ---- Keadaan sebenar: endpoint belum wujud ---- -->
+        <div class="bg-amber-50 border-2 border-amber-600 rounded-xl p-5 mb-8" role="note">
+          <h3 class="text-sm font-bold text-amber-900 mb-2">Keadaan borang ini sekarang</h3>
+          <p class="text-sm text-amber-900 leading-relaxed">
+            Hantaran automatik <strong>belum dibuka lagi</strong> — pelayan simpanan belum wujud.
+            Anda boleh mengisi borang ini sepenuhnya untuk melihat bagaimana ia berfungsi, dan
+            <strong>teks anda tidak akan dihantar ke mana-mana</strong>. Kalau anda benar-benar mahu
+            cerita anda diterbitkan sekarang, sila salin teks anda dan hantar ke
+            <a href="mailto:hello@jejakedu.my?subject=Suara%20Pelajar%20%E2%80%94%20cerita%20saya"
+               class="font-semibold underline underline-offset-2 hover:text-amber-800">hello@jejakedu.my</a>.
+          </p>
+        </div>
+
+        <!-- ---- Kategori (WAJIB) ---- -->
+        <fieldset class="mb-8">
+          <legend class="text-base font-bold text-slate-900 mb-1">
+            Cerita ini tentang apa?
+            <span class="text-red-700" aria-hidden="true">*</span>
+          </legend>
+          <p class="text-sm text-slate-600 mb-4" id="kategori-bantuan">
+            Pilih satu. Kalau tak pasti, pilih yang paling hampir.
+          </p>
+
+          <div class="grid gap-3" role="radiogroup" aria-describedby="kategori-bantuan">
+            <label class="relative flex items-start gap-3 p-4 bg-white border-2 border-stone-500
+                          rounded-xl cursor-pointer hover:border-teal-600 transition-colors
+                          has-[:checked]:border-teal-700 has-[:checked]:bg-teal-50
+                          has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700
+                          has-[:focus-visible]:ring-offset-2">
+              <input type="radio" name="kategori" value="suka" required x-model="kategori"
+                     class="mt-1 w-5 h-5 text-teal-700 border-slate-500
+                            focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700" />
+              <span class="min-w-0">
+                <span class="block font-semibold text-slate-900">Kisah suka</span>
+                <span class="block text-sm text-slate-600 leading-relaxed">
+                  Sesuatu yang berjaya untuk anda — projek, guru, kelas, apa sahaja.
+                </span>
+              </span>
+            </label>
+
+            <label class="relative flex items-start gap-3 p-4 bg-white border-2 border-stone-500
+                          rounded-xl cursor-pointer hover:border-teal-600 transition-colors
+                          has-[:checked]:border-teal-700 has-[:checked]:bg-teal-50
+                          has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700
+                          has-[:focus-visible]:ring-offset-2">
+              <input type="radio" name="kategori" value="duka" x-model="kategori"
+                     class="mt-1 w-5 h-5 text-teal-700 border-slate-500
+                            focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700" />
+              <span class="min-w-0">
+                <span class="block font-semibold text-slate-900">Kisah duka</span>
+                <span class="block text-sm text-slate-600 leading-relaxed">
+                  Sesuatu yang susah, mengecewakan, atau tidak adil.
+                </span>
+              </span>
+            </label>
+
+            <label class="relative flex items-start gap-3 p-4 bg-white border-2 border-stone-500
+                          rounded-xl cursor-pointer hover:border-teal-600 transition-colors
+                          has-[:checked]:border-teal-700 has-[:checked]:bg-teal-50
+                          has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700
+                          has-[:focus-visible]:ring-offset-2">
+              <input type="radio" name="kategori" value="cadangan" x-model="kategori"
+                     class="mt-1 w-5 h-5 text-teal-700 border-slate-500
+                            focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700" />
+              <span class="min-w-0">
+                <span class="block font-semibold text-slate-900">Cadangan penambahbaikan</span>
+                <span class="block text-sm text-slate-600 leading-relaxed">
+                  Idea konkrit untuk sekolah, kurikulum, atau portal ini.
+                </span>
+              </span>
+            </label>
+
+            <label class="relative flex items-start gap-3 p-4 bg-white border-2 border-stone-500
+                          rounded-xl cursor-pointer hover:border-teal-600 transition-colors
+                          has-[:checked]:border-teal-700 has-[:checked]:bg-teal-50
+                          has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700
+                          has-[:focus-visible]:ring-offset-2">
+              <input type="radio" name="kategori" value="kejayaan" x-model="kategori"
+                     class="mt-1 w-5 h-5 text-teal-700 border-slate-500
+                            focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700" />
+              <span class="min-w-0">
+                <span class="block font-semibold text-slate-900">Cerita kejayaan</span>
+                <span class="block text-sm text-slate-600 leading-relaxed">
+                  Perjalanan dari susah ke berjaya. Biar orang lain belajar daripadanya.
+                </span>
+              </span>
+            </label>
+
+            <label class="relative flex items-start gap-3 p-4 bg-white border-2 border-stone-500
+                          rounded-xl cursor-pointer hover:border-teal-600 transition-colors
+                          has-[:checked]:border-teal-700 has-[:checked]:bg-teal-50
+                          has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700
+                          has-[:focus-visible]:ring-offset-2">
+              <input type="radio" name="kategori" value="isu" x-model="kategori"
+                     class="mt-1 w-5 h-5 text-teal-700 border-slate-500
+                            focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700" />
+              <span class="min-w-0">
+                <span class="block font-semibold text-slate-900">Isu perlu dibuli atau dielak</span>
+                <span class="block text-sm text-slate-600 leading-relaxed">
+                  Buli, tekanan, atau apa-apa yang perlu dihentikan.
+                </span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- ---- Cerita (WAJIB) ---- -->
+        <div class="mb-8">
+          <label for="cerita" class="block text-base font-bold text-slate-900 mb-1">
+            Cerita anda
+            <span class="text-red-700" aria-hidden="true">*</span>
+          </label>
+          <p id="cerita-bantuan" class="text-sm text-slate-600 mb-3">
+            Tulis macam anda bercakap dengan kawan. Tiada format betul atau salah.
+          </p>
+          <textarea id="cerita" name="cerita" rows="7" maxlength="500" required
+                    x-model="cerita"
+                    aria-describedby="cerita-bantuan cerita-kiraan"
+                    class="w-full px-4 py-3 min-h-40 rounded-xl bg-white border-2 border-slate-500
+                           text-slate-900 leading-relaxed resize-y
+                           placeholder:text-slate-500
+                           focus:outline-none focus:border-teal-700 focus:ring-2 focus:ring-teal-700
+                           focus:ring-offset-2"></textarea>
+
+          <div class="mt-2 flex items-start justify-between gap-3">
+            <p id="cerita-kiraan" class="text-xs text-slate-600" aria-live="polite">
+              <span x-text="baki" class="tabular-nums font-semibold">500</span> aksara lagi
+              <template x-if="terlaluPendek && cerita.length > 0">
+                <span class="block mt-1 text-red-700 font-semibold">
+                  Perlu sekurang-kurangnya 50 aksara.
+                </span>
+              </template>
+            </p>
+            <p class="text-xs text-slate-600 shrink-0" x-show="cerita.length > 0" x-cloak>
+              <span x-text="cerita.trim().split(/\s+/).filter(Boolean).length" class="tabular-nums font-semibold">0</span>
+              patah
+            </p>
+          </div>
+
+          <!-- ---- Blok bantuan sensitiviti: di BAWAH textarea ---- -->
+          <div x-show="perluBantuan" x-cloak
+               role="status" aria-live="polite"
+               class="mt-4 bg-amber-50 border-2 border-amber-600 rounded-xl p-5">
+            <h3 class="text-sm font-bold text-amber-900 mb-2">
+              Kalau ini tentang anda sekarang
+            </h3>
+            <p class="text-sm text-amber-900 leading-relaxed mb-3">
+              Cerita anda akan kami baca — tetapi kami tidak boleh bantu serta-merta. Kalau anda dalam
+              bahaya atau rasa tidak selamat sekarang, sila hubungi:
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="tel:15999" class="inline-flex items-center gap-2 min-h-11 font-semibold text-amber-900
+                   underline underline-offset-2 hover:text-amber-800">
+                  Talian Kasih 15999
+                </a>
+                <span class="text-amber-900">— 24 jam, percuma</span>
+              </li>
+              <li>
+                <a href="tel:0376272929" class="inline-flex items-center gap-2 min-h-11 font-semibold text-amber-900
+                   underline underline-offset-2 hover:text-amber-800">
+                  Befrienders 03-7627 2929
+                </a>
+                <span class="text-amber-900">— mendengar tanpa menghakimi</span>
+              </li>
+              <li>
+                <a href="tel:15555" class="inline-flex items-center gap-2 min-h-11 font-semibold text-amber-900
+                   underline underline-offset-2 hover:text-amber-800">
+                  Talian HEAL 15555
+                </a>
+                <span class="text-amber-900">— KKM, sokongan kesihatan mental</span>
+              </li>
+              <li>
+                <span class="font-semibold text-amber-900">Guru kaunseling sekolah anda</span>
+                <span class="text-amber-900">— orang paling dekat dengan anda</span>
+              </li>
+            </ul>
+            <p class="mt-3 pt-3 border-t border-amber-600/40 text-xs text-amber-900">
+              Anda tetap boleh hantar cerita ini. Hantar atau tidak, itu hak anda.
+            </p>
+          </div>
+        </div>
+
+        <!-- ---- Nama panggilan (PILIHAN) ---- -->
+        <div class="mb-6">
+          <label for="nama" class="block text-sm font-bold text-slate-900 mb-1">
+            Nama panggilan <span class="font-normal text-slate-600">(pilihan)</span>
+          </label>
+          <p id="nama-bantuan" class="text-sm text-slate-600 mb-3">
+            Boleh guna nama samaran. Kosongkan sahaja kalau anda mahu dipaparkan sebagai "Anonim".
+          </p>
+          <input id="nama" name="nama" type="text" maxlength="24" x-model="namaPanggilan"
+                 aria-describedby="nama-bantuan" autocomplete="off"
+                 class="w-full px-4 py-3 min-h-11 rounded-xl bg-white border-2 border-slate-500
+                        text-slate-900 placeholder:text-slate-500
+                        focus:outline-none focus:border-teal-700 focus:ring-2 focus:ring-teal-700
+                        focus:ring-offset-2" />
+        </div>
+
+        <!-- ---- Negeri (PILIHAN) ---- -->
+        <div class="mb-6">
+          <label for="negeri" class="block text-sm font-bold text-slate-900 mb-1">
+            Negeri <span class="font-normal text-slate-600">(pilihan)</span>
+          </label>
+          <p id="negeri-bantuan" class="text-sm text-slate-600 mb-3">
+            Kami tidak tanya nama sekolah. Itu sengaja — ia boleh mengenal pasti guru anda.
+          </p>
+          <select id="negeri" name="negeri" x-model="negeri" aria-describedby="negeri-bantuan"
+                  class="w-full px-4 py-3 min-h-11 rounded-xl bg-white border-2 border-slate-500
+                         text-slate-900 focus:outline-none focus:border-teal-700
+                         focus:ring-2 focus:ring-teal-700 focus:ring-offset-2">
+            <option value="">Pilih negeri</option>
+            <option>Johor</option><option>Kedah</option><option>Kelantan</option>
+            <option>Melaka</option><option>Negeri Sembilan</option><option>Pahang</option>
+            <option>Perak</option><option>Perlis</option><option>Pulau Pinang</option>
+            <option>Sabah</option><option>Sarawak</option><option>Selangor</option>
+            <option>Terengganu</option><option>W.P. Kuala Lumpur</option>
+            <option>W.P. Labuan</option><option>W.P. Putrajaya</option>
+          </select>
+        </div>
+
+        <!-- ---- Honeypot: TIDAK kelihatan, TIDAK boleh difokus ---- -->
+        <div aria-hidden="true" class="absolute left-[-9999px] w-px h-px overflow-hidden">
+          <label for="laman_web">Laman web</label>
+          <input id="laman_web" name="laman_web" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- ---- Persetujuan (WAJIB) ---- -->
+        <label class="flex items-start gap-3 p-4 bg-white border-2 border-stone-500 rounded-xl
+                      cursor-pointer has-[:checked]:border-teal-700 has-[:checked]:bg-teal-50
+                      has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700
+                      has-[:focus-visible]:ring-offset-2 mb-6">
+          <input type="checkbox" x-model="persetujuan" required
+                 class="mt-1 w-5 h-5 rounded text-teal-700 border-slate-500
+                        focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700" />
+          <span class="text-sm text-slate-700 leading-relaxed">
+            Saya faham cerita ini akan dibaca dua penyunting, dan nama guru atau sekolah saya
+            akan dibuang sebelum ia diterbitkan.
+          </span>
+        </label>
+
+        <!-- ---- Ralat hantar ---- -->
+        <p x-show="ralat" x-cloak role="alert"
+           class="mb-4 text-sm font-semibold text-red-700 bg-red-50 border-2 border-red-700
+                  rounded-xl px-4 py-3" x-text="ralat"></p>
+
+        <!-- ---- Butang hantar ---- -->
+        <button type="button" @click="hantar()" :disabled="!bolehHantar"
+                class="w-full inline-flex items-center justify-center gap-2 min-h-12 px-6 py-4
+                       rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold
+                       transition-colors disabled:opacity-50 disabled:cursor-not-allowed
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700
+                       focus-visible:ring-offset-2">
+          <span x-show="!menghantar">Hantar cerita saya</span>
+          <span x-show="menghantar" x-cloak>Menghantar…</span>
+        </button>
+        <p class="mt-3 text-xs text-slate-600 text-center">
+          Tiada emel diminta. Tiada akaun. Kami tidak akan tahu siapa anda.
+        </p>
+
+        <!-- ---- Kad pengesahan selepas hantar ---- -->
+        <div x-show="siap" x-cloak role="status" aria-live="polite" tabindex="-1"
+             class="mt-8 bg-white border-2 border-teal-700 rounded-xl p-6">
+          <div class="flex items-start gap-3 mb-4">
+            <svg class="w-6 h-6 text-teal-700 shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                 viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900 mb-1">Cerita anda sudah sampai</h2>
+              <p class="text-sm text-slate-600">Rujukan: <strong x-text="rujukan"></strong></p>
+            </div>
+          </div>
+
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Simpan nombor rujukan ini kalau anda mahu tanya tentang cerita ini kemudian.
+          </p>
+
+          <h3 class="text-sm font-bold text-slate-900 mb-2">Apa berlaku seterusnya</h3>
+          <ol class="space-y-3 text-sm text-slate-700">
+            <li class="flex gap-3">
+              <span class="w-5 h-5 rounded-full bg-teal-700 text-white text-xs font-bold flex
+                           items-center justify-center shrink-0" aria-hidden="true">1</span>
+              <span>Kami baca dalam <strong>3 hari bekerja</strong>.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="w-5 h-5 rounded-full bg-teal-700 text-white text-xs font-bold flex
+                           items-center justify-center shrink-0" aria-hidden="true">2</span>
+              <span>Kalau diterbitkan, ia muncul dalam ruangan Suara Pelajar.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="w-5 h-5 rounded-full bg-teal-700 text-white text-xs font-bold flex
+                           items-center justify-center shrink-0" aria-hidden="true">3</span>
+              <span>Nama guru dan sekolah dibuang sebelum terbit. Selalu.</span>
+            </li>
+          </ol>
+
+          <p class="mt-5 pt-4 border-t border-stone-500 text-sm text-slate-600">
+            Sebab kami tiada emel anda: kami tidak boleh memberitahu anda secara peribadi.
+            Itu harga anonimiti. Anda boleh semak ruangan Suara Pelajar untuk melihat sama ada ia terbit.
+          </p>
+
+          <div class="mt-5 flex flex-wrap gap-3">
+            <a href="#senarai-seksyen" class="inline-flex items-center justify-center min-h-11 px-5 py-3
+               rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-semibold transition-colors
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2">
+              Kembali ke atas halaman
+            </a>
+            <button type="button" @click="hantarLagi()"
+               class="inline-flex items-center justify-center min-h-11 px-5 py-3 rounded-lg bg-white
+                      border border-slate-500 text-slate-700 hover:bg-stone-100 font-semibold transition-colors
+                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2">
+              Hantar satu lagi
+            </button>
+          </div>
+        </div>
+
+        <p class="mt-8 text-xs text-slate-600 leading-relaxed">
+          <strong>Apa yang kami tidak minta, dan tidak akan minta:</strong> nama penuh, nama sekolah,
+          nombor telefon, emel, umur tepat. Kalau pelayan simpanan dibina kelak, ia akan menerima
+          hanya kategori, cerita, nama panggilan dan negeri — tiada alamat IP disimpan, tiada cap jari
+          pelayar, tiada analitik per-hantar.
+        </p>
+      </section>
+    </div>
+
+    <aside class="mt-12 bg-stone-100 border border-stone-500 rounded-xl p-6" aria-labelledby="rujukan-tajuk">
+      <h2 id="rujukan-tajuk" class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Sumber utama</h2>
+      <ol class="space-y-2.5">
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">1</span><span class="text-sm text-slate-700">Institut Kesihatan Umum (IKU) — NHMS 2023 Fact Sheet; Astro Awani (4 Dis 2024); The Star (9 Julai 2026); Malay Mail (9 Julai 2024)</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">2</span><span class="text-sm text-slate-700">Sistem Sahsiah Diri Murid (SSDM), KPM; Bernama (26 Feb 2026); Sinar Harian (15 Dis 2024, 11 Sept 2025); The Star (3 Dis 2025)</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">3</span><span class="text-sm text-slate-700">Zekolah — tinjauan ibu bapa kebangsaan 2024; The Sun — tekanan akademik pelajar Tingkatan 5; SEA-PLM 2024</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">4</span><span class="text-sm text-slate-700">KPM — kadar keciciran murid; Untuk Malaysia (NGO) — Dokumen Keciciran Pendidikan Malaysia 2023; World Bank — Learning Poverty Brief 2024</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">5</span><span class="text-sm text-slate-700">Yayasan Hasanah — The Hasanah Report 2025; KPM — KWAPM; Bernama; PETRONAS (8 Okt 2025); Malay Mail (13 Jan 2025)</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">6</span><span class="text-sm text-slate-700">Newswav/The Sun — SPM urban-rural gap may mask struggles in remote schools (Julai 2026); The Borneo Post / Bernama (1 Jan 2023)</span></li>
+      </ol>
+      <div class="mt-5 pt-4 border-t border-stone-200 space-y-2 text-xs text-slate-600">
+        <p><strong>Tiada kisah individu dipetik tanpa kebenaran.</strong> Semua testimoni dalam dokumen riset kami datang daripada sumber yang sudah diterbitkan secara awam.</p>
+        <p><strong>Entri yang menunggu semakan tidak dipaparkan.</strong> Tiada keadaan "pending" yang boleh dilihat pelajar lain — itu membocorkan kandungan yang belum disunting.</p>
+        <p><strong>Bilangan kaunselor sekolah</strong> dan nisbah kaunselor:pelajar daripada sumber rasmi <strong>tidak ditemui</strong>.</p>
+      </div>
+    </aside>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href="/suara-guru.html" class="inline-flex items-center justify-center min-h-11 px-5 py-3 rounded-lg bg-white border border-slate-500 text-slate-700 hover:bg-stone-100 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2">
+        Suara Guru
+      </a>
+      <a href="/resources.html" class="inline-flex items-center justify-center min-h-11 px-5 py-3 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2">
+        Panduan sumber &amp; bantuan
+      </a>
+    </div>
+
+  </div>
+</div>

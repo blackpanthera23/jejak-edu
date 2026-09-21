@@ -1,0 +1,531 @@
+<div class="py-12">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <header class="mb-10">
+      <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-full border bg-teal-50 text-teal-700 border-teal-200 mb-4">Sejarah</span>
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight mb-4">
+        Sejarah Pendidikan Malaysia: 1816 hingga 2026
+      </h1>
+      <p class="text-lg text-slate-600 leading-relaxed">
+        Dua ratus sepuluh tahun, diringkaskan kepada peristiwa yang benar-benar mengubah
+        apa yang berlaku di dalam bilik darjah. Setiap peristiwa ada tahun, satu ayat, dan satu sumber.
+      </p>
+    </header>
+
+    <section x-data="tldrModul()" x-init="init()" class="mb-10" aria-labelledby="tldr-tajuk">
+      <div class="bg-teal-50 border border-teal-200 rounded-xl overflow-hidden">
+        <details open data-tldr class="group">
+          <summary class="flex items-center justify-between gap-3 px-5 py-4 cursor-pointer
+                          list-none focus-visible:outline-none focus-visible:ring-2
+                          focus-visible:ring-teal-700 focus-visible:ring-inset">
+            <h2 id="tldr-tajuk" class="text-sm font-bold text-teal-800 uppercase tracking-wide">
+              Ringkasan Pantas
+            </h2>
+            <span class="text-xs text-teal-700 font-semibold" aria-hidden="true">
+              <span class="group-open:hidden">Buka</span>
+              <span class="hidden group-open:inline">Tutup</span>
+            </span>
+          </summary>
+          <div class="px-5 pb-5">
+            <ul class="space-y-2.5 text-slate-800 leading-relaxed">
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>1816: Penang Free School ditubuhkan — sekolah Inggeris tertua di Malaya.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>1956: Penyata Razak dengan 17 cadangan menjadi asas sistem pendidikan kebangsaan.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>1970–1983: Bahasa Melayu menjadi bahasa pengantar semua peringkat, dari Darjah 1 hingga universiti.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>2003: Pendidikan rendah wajib berkuat kuasa — 47 tahun selepas ia pertama dicadangkan.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>2026: Empat sistem sekolah masih berasingan: SK 95.12% bumiputera, SJKT ~99% bukan bumiputera.</span></li>
+            </ul>
+            <p class="mt-4 pt-4 border-t border-teal-200 text-xs text-teal-800">
+              Ringkasan ini bukan pengganti kronologi penuh. Semua angka ada sumber di bawah.
+            </p>
+          </div>
+        </details>
+      </div>
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        <button type="button" @click="bukaPenuh()"
+                :aria-expanded="terbuka ? 'true' : 'false'"
+                aria-controls="kandungan-penuh"
+                class="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-3 rounded-lg
+                       bg-teal-700 hover:bg-teal-800 text-white font-semibold transition-colors
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700
+                       focus-visible:ring-offset-2">
+          <span x-text="terbuka ? 'Tutup balik' : 'Baca penuh'">Baca penuh</span>
+          <svg class="w-4 h-4 transition-transform" :class="terbuka && 'rotate-180'"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <a href="#peta-zaman"
+           class="inline-flex items-center min-h-11 px-4 py-3 text-sm font-semibold text-teal-700
+                  hover:text-teal-800 hover:bg-teal-50 rounded-lg transition-colors
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
+          Lompat ke zaman
+        </a>
+      </div>
+
+      <nav id="peta-zaman" aria-label="Peta zaman sejarah" class="mt-4 bg-white border border-stone-500 rounded-xl p-5">
+        <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wide mb-3">Kandungan</h2>
+        <ol class="space-y-1">
+          <li><a href="#zaman-british" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">1</span><span class="text-sm">Zaman British (1816–1951)</span></a></li>
+          <li><a href="#menuju-merdeka" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">2</span><span class="text-sm">Menuju merdeka (1955–1961)</span></a></li>
+          <li><a href="#malaysia-bahasa" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">3</span><span class="text-sm">Malaysia dan bahasa (1963–1983)</span></a></li>
+          <li><a href="#kabinet-1979" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">4</span><span class="text-sm">Laporan Kabinet 1979</span></a></li>
+          <li><a href="#falsafah" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">5</span><span class="text-sm">Falsafah Pendidikan Kebangsaan</span></a></li>
+          <li><a href="#akta-1996" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">6</span><span class="text-sm">Akta Pendidikan 1996</span></a></li>
+          <li><a href="#perang-bahasa" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">7</span><span class="text-sm">Perang bahasa (2002–2024)</span></a></li>
+          <li><a href="#hari-ini" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">8</span><span class="text-sm">Sistem hari ini (angka)</span></a></li>
+        </ol>
+      </nav>
+    </section>
+
+    <div id="kandungan-penuh" class="space-y-12">
+
+      <!-- ================= 1 ================= -->
+      <section id="zaman-british" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Zaman British (1816–1951)</h2>
+        <p class="text-slate-600 leading-relaxed mb-6">
+          Empat aliran sekolah dibina serentak — Melayu, Cina, Tamil dan Inggeris. Ia bukan
+          sekadar empat bahasa, tetapi empat laluan ekonomi yang berbeza.
+        </p>
+
+        <ol class="relative border-l-2 border-stone-500 ml-3 space-y-8">
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">1816</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Penang Free School ditubuhkan</h3>
+            <p class="text-slate-600 leading-relaxed">Sekolah Inggeris tertua di Malaya. Sekolah rendah Tamil pertama juga ditubuhkan di Pulau Pinang pada tahun yang sama.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Wikipedia EN — Barnes Report (S20); Wikipedia BM — Sekolah jenis kebangsaan Tamil (S52)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">1904</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Sekolah Cina moden pertama</h3>
+            <p class="text-slate-600 leading-relaxed">Sekolah Chung Hwa Confucian di Pulau Pinang. Sebelum itu, sekolah Cina bermula sebagai <em>sishu</em> — kelas persendirian di rumah guru, rumah persatuan atau tokong.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Wikipedia BM — Sekolah jenis kebangsaan Cina (S51)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">1920</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Ordinan Pendaftaran Sekolah</h3>
+            <p class="text-slate-600 leading-relaxed">Kali pertama kerajaan kolonial campur tangan secara ketat: mewajibkan pendaftaran sekolah, pengurus dan guru, serta memberi kuasa pemeriksaan.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Wikipedia BM — Sekolah jenis kebangsaan Cina (S51)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">1938</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">13 sekolah Tamil kerajaan, 511 sekolah ladang</h3>
+            <p class="text-slate-600 leading-relaxed">British mewajibkan pihak ladang menyediakan sekolah vernakular jika terdapat lebih <strong>10 anak pekerja</strong> berumur 7–14 tahun. Bilangan murid sekolah Tamil naik daripada <strong>29,800 (1946)</strong> kepada <strong>38,700 (1949)</strong>.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Wikipedia BM — Sekolah jenis kebangsaan Tamil (S52); Wikipedia BM — Laporan Barnes (S19)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">1946</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Laporan Cheeseman — cubaan pertama yang gagal</h3>
+            <p class="text-slate-600 leading-relaxed">Jawatankuasa diketuai H.R. Cheeseman mencadangkan pendidikan asas percuma dalam semua bahasa pengantar. Ia <strong>tidak dapat dilaksanakan</strong> kerana kekurangan guru Bahasa Inggeris dan kurang sokongan orang Melayu.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Wikipedia BM — Laporan Barnes 1950 (S19)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">Jun 1951</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Laporan Barnes — satu sekolah untuk semua</h3>
+            <p class="text-slate-600 leading-relaxed">Jawatankuasa <strong>14 orang</strong> (sembilan Melayu, lima British) mencadangkan <strong>satu jenis sekolah kebangsaan sahaja</strong> di peringkat rendah, dengan pendidikan rendah <strong>percuma enam tahun</strong>. Masyarakat Cina membantah keras — tiada wakil Cina dalam jawatankuasa.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Wikipedia BM — Laporan Barnes 1950 (S19)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">11 Julai 1951</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Laporan Fenn-Wu — jawapan masyarakat Cina</h3>
+            <p class="text-slate-600 leading-relaxed">William P. Fenn dan Wu Teh-yao mencadangkan <strong>trilingualisme</strong>: Bahasa Melayu sebagai bahasa rasmi, Bahasa Inggeris sebagai bahasa perniagaan, Bahasa Cina sebagai bahasa budaya. Hujah "bahasa ibunda + Bahasa Kebangsaan + Bahasa Inggeris" ini masih kedengaran dalam perdebatan DLP hari ini.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: NLB Singapura — "The Fenn-Wu report is published" (S21)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">1952</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Ordinan Pelajaran 1952 — gagal kerana darurat</h3>
+            <p class="text-slate-600 leading-relaxed">Sekolah Cina dan Tamil <strong>tidak diterima</strong> sebagai sebahagian sistem kebangsaan. Semua kanak-kanak 6–12 tahun dikehendaki mengikuti enam tahun pendidikan wajib — tetapi Ordinan ini <strong>tidak dapat dilaksanakan</strong> kerana darurat dan kekurangan wang. Pendidikan rendah wajib benar-benar berkuat kuasa hanya pada <strong>1 Januari 2003</strong>.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Wikipedia BM — Ordinan Pelajaran 1952 (S22); Maniam, V., Taylor & Francis 2026 (S68); KPM — Dasar Pengoperasian Pendidikan Rendah Wajib (S6)</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ================= 2 ================= -->
+      <section id="menuju-merdeka" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Menuju merdeka (1955–1961)</h2>
+        <p class="text-slate-600 leading-relaxed mb-6">
+          Tiga dokumen dalam enam tahun membina satu sistem daripada empat. Inilah asal-usul
+          istilah "Sekolah Kebangsaan" dan "Sekolah Jenis Kebangsaan" yang kita guna hari ini.
+        </p>
+
+        <ol class="relative border-l-2 border-stone-500 ml-3 space-y-8">
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">Mei 1956</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Penyata Razak — 17 cadangan</h3>
+            <p class="text-slate-600 leading-relaxed">Jawatankuasa diketuai Tun Abdul Razak Hussein. Bahasa Melayu dijadikan Bahasa Kebangsaan dan bahasa pengantar utama; dua jenis sekolah rendah diperkenalkan (SRK dan SRJK); Bahasa Melayu <strong>wajib diajar</strong> di SRJK.</p>
+            <blockquote class="mt-3 pl-4 border-l-2 border-teal-700 text-slate-700 leading-relaxed">
+              "…menyatukan budak-budak daripada semua bangsa di dalam negeri ini dengan memakai satu
+              peraturan pelajaran yang meliputi semua bangsa dengan menggunakan Bahasa kebangsaan
+              sebagai Bahasa pengantar yang besar, walaupun perkara ini tidak dapat dilaksanakan
+              dengan serta-merta melainkan hendaklah diperbuat dengan beransur-ansur."
+              <span class="block mt-1 text-xs text-slate-600">Penyata Razak, perenggan 12, halaman 3</span>
+            </blockquote>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Wikipedia BM — Penyata Razak 1956 (S23); Wan Mohd Zahid, UIAM 2018 (S35)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">1957</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Ordinan Pelajaran 1957</h3>
+            <p class="text-slate-600 leading-relaxed">Perundangan pendidikan pertama negara, menggabungkan Penyata Razak sebagai Seksyen 3. Peruntukan yang diumumkan termasuk pembinaan <strong>lima Sekolah Teknik</strong> dan <strong>dua Institut Rendah Teknik</strong>.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: KPM — Hala Tuju Pendidikan (S2); Berita PAS — Hari Ini Dalam Sejarah, 7 Mac 1957 (S25). <em>Tarikh kuat kuasa rasmi Ordinan 1957 tidak ditemui dalam sumber kerajaan.</em></p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">1960</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Laporan Rahman Talib</h3>
+            <p class="text-slate-600 leading-relaxed">Pelajaran sekolah rendah menjadi <strong>percuma</strong>; tempoh persekolahan dilanjutkan daripada <strong>6 tahun kepada 9 tahun</strong>; murid naik darjah secara automatik; pelajaran agama Islam diadakan jika murid berkenaan sekurang-kurangnya <strong>15 orang</strong>.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Wikipedia BM — Laporan Abdul Rahman Talib (S26); Wan Mohd Zahid, UIAM 2018 (S35)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">1961</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Akta Pelajaran 1961 — dan perpecahan sekolah Cina</h3>
+            <p class="text-slate-600 leading-relaxed"><strong>54 buah sekolah menengah Cina menerima penukaran</strong> kepada bahasa pengantar Inggeris. <strong>60 buah menolak</strong> dan kekal sehingga hari ini sebagai Sekolah Menengah Persendirian Cina. Pada 2020, UCSCAM menggunakan formula <strong>"60+2+1"</strong> untuk mengira sekolah ini.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Dong Zong (S27); Wan Mohd Zahid, UIAM 2018 (S35); Wikipedia EN — Chinese independent high school (S81)</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ================= 3 ================= -->
+      <section id="malaysia-bahasa" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Malaysia dan bahasa (1963–1983)</h2>
+        <p class="text-slate-600 leading-relaxed mb-6">
+          Antara 1970 dan 1983, sistem pendidikan Malaysia berubah daripada dua bahasa pengantar
+          utama kepada satu. Kesan sampingannya: sekolah menengah Inggeris lenyap sebagai kategori.
+        </p>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-6">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Jadual peralihan bahasa pengantar, 1957 hingga 1983</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Tahun</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Perubahan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 font-bold text-slate-900 tabular-nums">1957</td><td class="px-4 py-3 text-slate-700">Bahasa Melayu jadi mata pelajaran wajib di sekolah rendah dan menengah</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-800 tabular-nums">1970</td><td class="px-4 py-3 text-slate-800">Bahasa pengantar <strong>Darjah 1</strong></td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-800 tabular-nums">1975</td><td class="px-4 py-3 text-slate-800">Semua Sekolah Rendah Inggeris <strong>selesai ditukar</strong> menjadi Sekolah Rendah Kebangsaan</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-800 tabular-nums">1976</td><td class="px-4 py-3 text-slate-800">Bahasa pengantar <strong>Tingkatan 1</strong></td></tr>
+              <tr><td class="px-4 py-3 font-bold text-slate-900 tabular-nums">1979</td><td class="px-4 py-3 text-slate-700">Bahasa pengantar Tingkatan VI aliran sastera</td></tr>
+              <tr><td class="px-4 py-3 font-bold text-slate-900 tabular-nums">1980</td><td class="px-4 py-3 text-slate-700">Bahasa pengantar jurusan sastera tahun 1 di universiti</td></tr>
+              <tr><td class="px-4 py-3 font-bold text-slate-900 tabular-nums">1981</td><td class="px-4 py-3 text-slate-700">Bahasa pengantar Tingkatan VI aliran sains</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-800 tabular-nums">1982</td><td class="px-4 py-3 text-slate-800">Bahasa pengantar <strong>semua peringkat persekolahan</strong></td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-800 tabular-nums">1983</td><td class="px-4 py-3 text-slate-800">Bahasa pengantar <strong>semua kursus di universiti</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-2 text-xs text-slate-600 sm:hidden">Geser jadual ke kiri untuk melihat lebih banyak.</p>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">16 September 1963</p>
+            <h3 class="font-bold text-slate-900 mb-2">Pembentukan Malaysia</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Akta Pelajaran 1961 dilanjutkan ke Sarawak hanya pada <strong>1975</strong> dan ke Sabah pada <strong>1976</strong>. Sarawak mengekalkan Bahasa Inggeris sebagai bahasa rasmi negeri.</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Kesan hari ini</p>
+            <h3 class="font-bold text-slate-900 mb-2">Tiada "SMJK Inggeris"</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Akta Pendidikan 1996 membuang kategori "Sekolah Menengah Jenis Kebangsaan" dan mengklasifikasikan semula semua sekolah menengah kerajaan sebagai <strong>SMK</strong>.</p>
+          </div>
+        </div>
+        <p class="mt-4 text-xs text-slate-600">Sumber: KPM — Hala Tuju Pendidikan (S2); Wikipedia EN — Education Act 1996 (S29); Wikipedia BM — Akta Pelajaran 1961 (S28); Wikipedia EN — National Language Act 1963/67 (S31); Wikipedia EN — National-type Chinese secondary school (S57)</p>
+      </section>
+
+      <!-- ================= 4 ================= -->
+      <section id="kabinet-1979" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Laporan Kabinet 1979</h2>
+        <p class="text-slate-600 leading-relaxed mb-6">
+          Kajian mengambil masa <strong>enam tahun</strong>. Ia memberi kita 3M, dua jurusan
+          menengah atas, dan model dua jurusan akademik/vokasional yang masih hidup hari ini.
+        </p>
+
+        <ol class="relative border-l-2 border-stone-500 ml-3 space-y-8">
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">September 1974</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Jawatankuasa Kabinet ditubuhkan</h3>
+            <p class="text-slate-600 leading-relaxed">Dipengerusikan Tun Dr. Mahathir Mohamad, ketika itu Menteri Pelajaran. Latar belakangnya: rusuhan kaum <strong>13 Mei 1969</strong>, Rukun Negara <strong>1970</strong>, dan Dasar Ekonomi Baharu <strong>1970</strong>.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: AnyFlip — Laporan Jawatankuasa Kabinet 1979 (S70)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">7 November 1979</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Laporan dibentangkan</h3>
+            <p class="text-slate-600 leading-relaxed">Tumpuan kepada pendidikan asas <strong>3M</strong> (membaca, menulis, mengira); Bahasa Inggeris dikekalkan sebagai bahasa kedua; pendidikan menengah atas dibahagikan kepada <strong>dua jurusan: akademik dan vokasional</strong>; peluang persekolahan ditambah daripada <strong>9 tahun ke 11 tahun</strong>.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: KPM — Imbasan Sejarah (S1); Wikipedia BM — Penyata Mahathir 1979 (S33); Katalog Perpustakaan IAB (S71)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">1982 → 1989</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">KBSR dan KBSM</h3>
+            <p class="text-slate-600 leading-relaxed">KBSR dirintis di <strong>302 buah sekolah rendah</strong> (1982), dilaksanakan di semua sekolah rendah (1983), dan dicapai sepenuhnya pada <strong>1988</strong>. KBSM bermula untuk mata pelajaran bahasa pada 1988, dan mata pelajaran lain pada <strong>1989</strong>.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: KPM — Hala Tuju Pendidikan (S2)</p>
+          </li>
+
+          <li class="pl-6 relative">
+            <span aria-hidden="true" class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-700 border-2 border-white"></span>
+            <p class="text-sm font-bold text-teal-700 tabular-nums mb-1">2023</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Kesan hari ini</h3>
+            <p class="text-slate-600 leading-relaxed">Model dua jurusan masih hidup, dalam bentuk yang jauh lebih besar. Enrolmen TVET meningkat kepada <strong>10.51%</strong>, dengan kebolehpasaran graduan Kolej Vokasional mencapai <strong>99.38%</strong>.</p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: KPM — Laporan Tahunan PPPM 2023 (S9)</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ================= 5 ================= -->
+      <section id="falsafah" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Falsafah Pendidikan Kebangsaan</h2>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Dirumuskan pada <strong>1987</strong> dan diisytiharkan pada <strong>1988</strong>,
+          serentak dengan pelaksanaan Kurikulum Bersepadu Sekolah Menengah. Disemak pada
+          <strong>1996</strong> dan dimaktubkan dalam pendahuluan Akta Pendidikan 1996.
+        </p>
+
+        <blockquote class="bg-teal-50 border border-teal-200 rounded-xl p-5 text-slate-800 leading-relaxed mb-4">
+          "Pendidikan di Malaysia adalah suatu usaha berterusan ke arah lebih memperkembangkan
+          potensi individu secara menyeluruh dan bersepadu untuk melahirkan insan yang seimbang
+          dan harmonis dari segi intelek, rohani, emosi dan jasmani berdasarkan kepercayaan dan
+          kepatuhan kepada Tuhan. Usaha ini bertujuan untuk melahirkan <strong>warganegara Malaysia
+          yang berilmu pengetahuan, berketerampilan, berakhlak mulia, bertanggungjawab</strong> dan
+          berkeupayaan mencapai kesejahteraan diri serta memberikan sumbangan terhadap keharmonian
+          dan kemakmuran <strong>keluarga, masyarakat dan negara</strong>."
+          <span class="block mt-3 text-xs text-teal-800">Teks rasmi portal KPM (versi semasa)</span>
+        </blockquote>
+
+        <p class="text-slate-600 leading-relaxed mb-4">
+          Istilah ringkas <strong>JERI</strong> — Jasmani, Emosi, Rohani, Intelek — digunakan untuk
+          merujuk empat dimensi insan seimbang dalam FPK. Semua kurikulum kebangsaan
+          (KSPK, KSSR, KSSM, KSKV) digubal berasaskan FPK.
+        </p>
+        <p class="text-xs text-slate-600">
+          Sumber: KPM — Falsafah Pendidikan Kebangsaan (S3); Wikipedia BM — Falsafah Pendidikan Malaysia (S34);
+          Lembaga Peperiksaan KPM — Buku Format SPM 2021 (S75).
+          <em>Tahun tepat perubahan teks antara dua versi tidak dapat disahkan daripada sumber rasmi.</em>
+        </p>
+      </section>
+
+      <!-- ================= 6 ================= -->
+      <section id="akta-1996" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Akta Pendidikan 1996 — undang-undang yang masih memerintah</h2>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          <strong>Akta 550</strong>, menggantikan Akta Pelajaran 1961 dan Ordinan Pelajaran 1957.
+          Struktur setakat 1 Januari 2012: <strong>16 Bahagian, 156 seksyen, 1 jadual</strong>,
+          termasuk 2 pindaan (Akta A1152 tahun 2002 dan Akta A1341 tahun 2009).
+        </p>
+
+        <div class="bg-white border border-stone-500 rounded-xl p-5 mb-5">
+          <h3 class="font-bold text-slate-900 mb-3">Pendidikan rendah wajib</h3>
+          <dl class="space-y-3 text-sm">
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold text-slate-900 sm:w-40 shrink-0">Peruntukan</dt>
+              <dd class="text-slate-700">Seksyen 29A Akta Pendidikan 1996</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold text-slate-900 sm:w-40 shrink-0">Berkuat kuasa</dt>
+              <dd class="text-slate-700"><strong>1 Januari 2003</strong>, melalui Surat Pekeliling Ikhtisas Bil. 14/2002 (27 November 2002)</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold text-slate-900 sm:w-40 shrink-0">Tempoh wajib</dt>
+              <dd class="text-slate-700"><strong>Enam tahun</strong> — tempoh pendidikan rendah</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold text-slate-900 sm:w-40 shrink-0">Penalti</dt>
+              <dd class="text-slate-700">Denda <strong>tidak melebihi RM5,000</strong> atau penjara <strong>tidak lebih enam bulan</strong>, atau kedua-duanya</dd>
+            </div>
+          </dl>
+        </div>
+
+        <p class="text-slate-600 leading-relaxed">
+          Kesan hari ini: kadar enrolmen sekolah rendah Malaysia kini sekitar <strong>99%</strong>.
+          Kerajaan sedang memuktamadkan dasar <strong>pendidikan menengah wajib</strong> — ia belum
+          diwartakan dalam sumber yang dirujuk.
+        </p>
+        <p class="mt-3 text-xs text-slate-600">Sumber: KPM — Dasar Pengoperasian Pendidikan Rendah Wajib (S6); Wikipedia EN — Education Act 1996 (S29); Astro Awani — KPM bakal muktamadkan dasar wajib pendidikan menengah (S79)</p>
+      </section>
+
+      <!-- ================= 7 ================= -->
+      <section id="perang-bahasa" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Perang bahasa: PPSMI, MBMMBI, DLP (2002–2024)</h2>
+
+        <div class="space-y-6">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-teal-700 uppercase tracking-wide mb-2">19 Julai 2002 → Januari 2003</p>
+            <h3 class="font-bold text-slate-900 mb-3">PPSMI diluluskan dan bermula</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Mesyuarat Khas Jemaah Menteri meluluskan PPSMI. Pelaksanaan bermula Januari 2003 untuk <strong>semua murid Tahun 1</strong>, serta Tingkatan 1 dan Tingkatan 6 Rendah. Pelaksanaan penuh: <strong>2007</strong> (menengah), <strong>2008</strong> (rendah).</p>
+          </div>
+
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-teal-700 uppercase tracking-wide mb-2">Data pemantauan KPM 2008</p>
+            <h3 class="font-bold text-slate-900 mb-3">Mengapa ia dimansuhkan</h3>
+            <ul class="space-y-2.5 text-sm text-slate-700">
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Penggunaan Bahasa Inggeris hanya <strong>53–58%</strong> daripada masa yang diperuntukkan</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Gred A/B/C <strong>Sains UPSR 2008</strong>: bandar <strong>85.1% → 82.5%</strong>; luar bandar <strong>83.2% → 79.7%</strong></span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Gred A/B/C <strong>Matematik UPSR 2008</strong>: bandar <strong>84.8% → 80.9%</strong>; luar bandar <strong>80.9% → 77%</strong></span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>TIMSS 2007: Sains Malaysia <strong>ke-20 → ke-21</strong>; Matematik <strong>ke-10 → ke-20</strong></span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Kajian 2009 melibatkan <strong>53 pakar bahasa</strong>: kerugian berganda, terutama kepada <strong>75% murid</strong> kategori sederhana dan lemah</span></li>
+            </ul>
+            <p class="mt-3 text-xs text-slate-600">Sumber: KPM — Kenyataan Akhbar 8 Julai 2009 (S7); Malaysiakini — "PPSMI dimansuhkan mulai 2012" (S38)</p>
+          </div>
+
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-teal-700 uppercase tracking-wide mb-2">7 Mac 2009</p>
+            <h3 class="font-bold text-slate-900 mb-3">Bantahan awam</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Gerakan Mansuhkan PPSMI (GMP) ditubuhkan Januari 2009 — gabungan lebih <strong>40 NGO</strong>. Lebih <strong>8,000 orang</strong> menyertai perarakan dari Masjid Negara ke Istana Negara. Mei 2009: kesemua <strong>lima Sasterawan Negara</strong> yang masih hidup menolak dasar ini.</p>
+          </div>
+
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-teal-700 uppercase tracking-wide mb-2">8 Julai 2009</p>
+            <h3 class="font-bold text-slate-900 mb-3">Pemansuhan berperingkat</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-3">Dimansuhkan mulai <strong>2012</strong> bagi Tahun 1, Tahun 4, Tingkatan 1 dan Tingkatan 4. Mekanisme "soft landing" (5 Ogos 2009) membenarkan P&amp;P dwibahasa mulai <strong>2010</strong>, dengan kohort terakhir PPSMI tamat pada <strong>2014</strong>.</p>
+            <p class="text-xs text-slate-600">Sumber: KPM — Pelaksanaan P&amp;P Sains dan Matematik (S8)</p>
+          </div>
+
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-teal-700 uppercase tracking-wide mb-2">MBMMBI</p>
+            <h3 class="font-bold text-slate-900 mb-3">Dasar pengganti</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">Memartabatkan Bahasa Malaysia, Memperkukuh Bahasa Inggeris. Angka daripada kenyataan akhbar 8 Julai 2009:</p>
+            <div class="overflow-x-auto -mx-2 px-2">
+              <table class="min-w-full text-sm">
+                <caption class="sr-only">Inisiatif MBMMBI dan angkanya</caption>
+                <thead>
+                  <tr class="border-b border-stone-500">
+                    <th scope="col" class="text-left py-2 pr-4 font-bold text-slate-900">Inisiatif</th>
+                    <th scope="col" class="text-left py-2 font-bold text-slate-900">Angka</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-stone-200">
+                  <tr><td class="py-2.5 pr-4 text-slate-700">Guru Bahasa Inggeris tambahan</td><td class="py-2.5 font-semibold text-slate-900">13,933 orang</td></tr>
+                  <tr><td class="py-2.5 pr-4 text-slate-700">Waktu BI, SK Tahap I</td><td class="py-2.5 font-semibold text-slate-900">240 → 330 minit/minggu</td></tr>
+                  <tr><td class="py-2.5 pr-4 text-slate-700">Waktu BI, SK Tahap II</td><td class="py-2.5 font-semibold text-slate-900">210 → 300 minit/minggu</td></tr>
+                  <tr><td class="py-2.5 pr-4 text-slate-700">Waktu BI, SJKC/T Tahap I</td><td class="py-2.5 font-semibold text-slate-900">60 → 120 minit/minggu</td></tr>
+                  <tr><td class="py-2.5 pr-4 text-slate-700">Waktu BI, Tingkatan 1–6</td><td class="py-2.5 font-semibold text-slate-900">200 → 280 minit/minggu</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-teal-700 uppercase tracking-wide mb-2">2016 → 2024</p>
+            <h3 class="font-bold text-slate-900 mb-3">DLP — Dual Language Programme</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-3">Diumumkan dalam Belanjawan 2016 (Oktober 2015) dan dirintis di <strong>300 buah sekolah</strong>. Pada Ogos 2017, <strong>1,214 buah sekolah</strong> memilih melaksanakan DLP: <strong>394 luar bandar</strong> dan <strong>820 bandar</strong>.</p>
+            <p class="text-sm text-slate-600 leading-relaxed">Empat kriteria penyertaan: sumber mencukupi, guru memenuhi kriteria, kesediaan pengetua/guru besar, dan permintaan serta sokongan ibu bapa. DLP <strong>opsyen</strong>, bukan wajib — itulah kompromi politik yang membolehkannya bertahan sehingga 2026.</p>
+            <p class="mt-3 text-xs text-slate-600">Sumber: KPM — Garis Panduan DLP (S17); Borneo Post (S40); Malaysiakini KiniGuide DLP (S41); PAGE Malaysia (S66)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 8 ================= -->
+      <section id="hari-ini" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Sistem hari ini (angka)</h2>
+
+        <div class="grid gap-4 sm:grid-cols-3 mb-6">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">10,220</p>
+            <p class="text-sm text-slate-600 mt-1">sekolah (7,780 rendah + 2,440 menengah)</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">4,987,401</p>
+            <p class="text-sm text-slate-600 mt-1">murid</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">416,743</p>
+            <p class="text-sm text-slate-600 mt-1">guru</p>
+          </div>
+        </div>
+        <p class="text-xs text-slate-600 mb-8">Data EMIS KPM setakat 31 Julai 2020.</p>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Pengasingan kaum mengikut jenis sekolah, 2024</h3>
+        <div class="space-y-3 mb-6">
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <span class="text-sm font-semibold text-slate-900">SK — murid bumiputera</span>
+              <span class="text-sm font-bold text-teal-700 tabular-nums stat-num">95.12%</span>
+            </div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:95.12%"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <span class="text-sm font-semibold text-slate-900">SJKC — murid bukan Cina</span>
+              <span class="text-sm font-bold text-teal-700 tabular-nums stat-num">~19.75%</span>
+            </div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:19.75%"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <span class="text-sm font-semibold text-slate-900">SJKC — murid Melayu (2026)</span>
+              <span class="text-sm font-bold text-teal-700 tabular-nums stat-num">9.01%</span>
+            </div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:9.01%"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <span class="text-sm font-semibold text-slate-900">SJKT — murid bukan bumiputera</span>
+              <span class="text-sm font-bold text-teal-700 tabular-nums stat-num">~99%</span>
+            </div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:99%"></div></div>
+          </div>
+        </div>
+
+        <p class="text-slate-600 leading-relaxed mb-3">
+          Murid bumiputera di SJKC naik daripada <strong>11.67% (2014)</strong> kepada
+          <strong>18.52% (2024)</strong> — hampir sekali ganda dalam sepuluh tahun. Murid Melayu di
+          SJKC pula: <strong>35,129 (2023)</strong> → <strong>41,133 (2026)</strong>.
+        </p>
+        <p class="text-xs text-slate-600">
+          Sumber: KPM — Statistik Bilangan Sekolah, Murid &amp; Guru (S11); Wikipedia BM — Sekolah jenis kebangsaan Cina (S51);
+          Utusan Malaysia — Parlimen, 10 Julai 2024 (S50); Bernama/Astro Awani — Murid Bumiputera di SJKC (S67);
+          Bernama — Enrolmen SJKT 78,501 murid (S49)
+        </p>
+      </section>
+    </div>
+
+    <aside class="mt-12 bg-stone-100 border border-stone-500 rounded-xl p-6" aria-labelledby="rujukan-tajuk">
+      <h2 id="rujukan-tajuk" class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Rujukan utama</h2>
+      <ol class="space-y-2.5">
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">1</span><span class="text-sm text-slate-700">KPM — Imbasan Sejarah &amp; Hala Tuju Pendidikan (moe.gov.my/imbasan-sejarah, /hala-tuju-pendidikan)</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">2</span><span class="text-sm text-slate-700">KPM — Falsafah Pendidikan Kebangsaan; Dasar Pengoperasian Pendidikan Rendah Wajib</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">3</span><span class="text-sm text-slate-700">KPM — Laporan Tahunan PPPM 2013–2025 (2023); Kenyataan Akhbar 8 Julai 2009 (MBMMBI)</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">4</span><span class="text-sm text-slate-700">Wan Mohd Zahid Wan Mohd Noordin — "Falsafah Pendidikan Kebangsaan: Sejarah dan Matlamat", UIAM 2018</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">5</span><span class="text-sm text-slate-700">NLB Singapura — "The Fenn-Wu report is published"; Katalog Perpustakaan IAB — Laporan Jawatankuasa Kabinet 1979</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">6</span><span class="text-sm text-slate-700">Utusan Malaysia — Parlimen: kemasukan murid bukan bumiputera ke SK menurun (10 Julai 2024); Bernama — Enrolmen SJKT (22 Jun 2026)</span></li>
+      </ol>
+      <p class="text-xs text-slate-600 mt-5 pt-4 border-t border-stone-200">
+        Tujuh perkara dalam dokumen riset asal ditanda <strong>tidak ditemui</strong> dan tidak
+        diterbitkan di sini sebagai fakta — termasuk tarikh kuat kuasa rasmi Ordinan Pelajaran 1957
+        dan tahun tepat perubahan teks FPK. Semua angka di halaman ini boleh disemak pada sumber di atas.
+      </p>
+    </aside>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href="/benchmarking.html" class="inline-flex items-center justify-center min-h-11 px-5 py-3 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2">
+        Lihat penanda aras antarabangsa
+      </a>
+      <a href="/suara-guru.html" class="inline-flex items-center justify-center min-h-11 px-5 py-3 rounded-lg bg-white border border-slate-500 text-slate-700 hover:bg-stone-100 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2">
+        Apa kata guru hari ini
+      </a>
+    </div>
+
+  </div>
+</div>

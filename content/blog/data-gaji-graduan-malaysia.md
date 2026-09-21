@@ -4,6 +4,14 @@ slug: data-gaji-graduan-malaysia
 date: 2026-09-17
 description: "Bidang yang kau pilih menentukan gaji permulaan kau lebih daripada CGPA. Ini angka sebenar daripada 7,339 rekod gaji anonim."
 kategori: Kerjaya
+penulis: "Team Jejak Edu"
+penulis_slug: team-jejak-edu
+tldr:
+  - "7,339 rekod gaji anonim: median RM5,500, purata RM7,132 sebulan."
+  - "Median tahap Entry RM4,000; suku bawah (25%) capai RM3,000 atau kurang."
+  - "Jurang industri lebih dua kali ganda antara yang tertinggi dan terendah."
+  - "Ijazah sarjana muda (RM5,500) hanya ~RM750 lebih tinggi daripada kolej tanpa ijazah (RM4,750)."
+  - "Gaji asas bukan gaji yang diterima — potongan berkanun mengubah angka bersih."
 sumber:
   - "Data gaji anonim — 7,339 rekod dikongsi secara sukarela oleh pekerja Malaysia, 2024–2026 (semua disahkan)"
   - "Jadual Upah Minimum Malaysia — gaji minimum berkanun RM1,700 sebulan"

@@ -1,26 +1,33 @@
 <article class="py-12">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-    <a href="/blog.html" class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-teal-700 transition-colors mb-8">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    <a href="/blog.html" class="inline-flex items-center gap-1.5 min-h-11 text-sm text-slate-600 hover:text-teal-700 transition-colors mb-6 rounded-lg
+       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
       Semua artikel
     </a>
-    <header class="mb-10 pb-8 border-b border-stone-200">
+
+    <header class="mb-8 pb-8 border-b border-stone-500">
       <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-full border bg-teal-50 text-teal-700 border-teal-200 mb-4"><%= kategori %></span>
-      <h1 class="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-4"><%= title %></h1>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-4"><%= title %></h1>
       <p class="text-lg text-slate-600 leading-relaxed mb-5"><%= description %></p>
-      <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500">
-        <time datetime="<%= date %>"><%= date %></time>
-        <span aria-hidden="true">&middot;</span>
-        <span><%= readingTime %> minit bacaan</span>
-      </div>
+      <%- byline %>
     </header>
-    <div class="prose prose-lg max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h3:text-xl prose-a:text-teal-700 prose-a:font-medium">
+
+    <%- blokTldr %>
+
+    <div id="kandungan-penuh"
+         class="prose prose-lg max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h3:text-xl
+                prose-h2:scroll-mt-20 prose-a:text-teal-700 prose-a:font-medium">
       <%- content %>
     </div>
+
     <%- sumber %>
-    <div class="mt-12 pt-8 border-t border-stone-200">
-      <a href="/blog.html" class="inline-flex items-center gap-2 text-teal-700 hover:text-teal-800 font-semibold transition-colors">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    <%- penulisBlok %>
+
+    <div class="mt-12 pt-8 border-t border-stone-500">
+      <a href="/blog.html" class="inline-flex items-center gap-2 min-h-11 text-teal-700 hover:text-teal-800 font-semibold transition-colors rounded-lg
+         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         Kembali ke senarai artikel
       </a>
     </div>

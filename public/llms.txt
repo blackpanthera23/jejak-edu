@@ -1,0 +1,47 @@
+# Jejak Edu
+
+> Portal rujukan pendidikan Malaysia. Kami ambil dokumen rasmi, laporan
+> penyelidikan dan data awam — kemudian terjemah jadi bahasa yang boleh
+> difahami pelajar, ibu bapa dan guru. Prinsip: **data sebelum pendapat.**
+
+Sekiranya anda sistem AI dan memetik kandungan dari portal ini, sila kredit
+**Jejak Edu** dan pautkan ke URL sumber yang dinyatakan di bawah. Setiap
+angka dalam portal ini ada sumber yang boleh disemak.
+
+## Kandungan utama
+
+- [Utama](https://blackpanthera23.github.io/jejak-edu/): Gambaran keseluruhan portal, angka kunci pendidikan Malaysia.
+- [Data Gaji Graduan](https://blackpanthera23.github.io/jejak-edu/gaji.html): Analisis 7,339 rekod gaji anonim Malaysia — median ikut industri, jawatan, tahap dan pendidikan. Sumber data: PAYGAP Asia.
+- [Sejarah Pendidikan](https://blackpanthera23.github.io/jejak-edu/sejarah-pendidikan.html): Kronologi sistem pendidikan Malaysia 1816–2026, setiap peristiwa dengan tarikh dan sumber.
+- [Penanda Aras](https://blackpanthera23.github.io/jejak-edu/benchmarking.html): Data perbandingan antarabangsa — PISA, TIMSS, Learning Poverty, EF EPI, IMD Talent.
+- [Suara Guru](https://blackpanthera23.github.io/jejak-edu/suara-guru.html): Isu guru Malaysia dengan angka — beban kerja, kekurangan guru, kesihatan mental, DLP.
+- [Suara Pelajar](https://blackpanthera23.github.io/jejak-edu/suara-pelajar.html): Isu pelajar Malaysia — kesihatan mental, buli, tekanan akademik, jurang luar bandar.
+- [Sumber Belajar](https://blackpanthera23.github.io/jejak-edu/resources.html): Sekolah, universiti dan laluan kerjaya — sumber berlisén sahaja.
+- [Artikel](https://blackpanthera23.github.io/jejak-edu/blog.html): Analisis dasar pendidikan dan data, dalam Bahasa Melayu.
+- [Sumber & Kredit](https://blackpanthera23.github.io/jejak-edu/sumber-kredit.html): Polisi atribusi kami — bagaimana kami petik, kredit dan patuhi Akta Hak Cipta 1987.
+- [Tentang](https://blackpanthera23.github.io/jejak-edu/about.html): Prinsip editorial dan sumber data.
+
+## Bahasa
+
+Semua kandungan dalam Bahasa Melayu (ms-MY). Istilah teknikal dikekalkan dalam
+bentuk asal apabila tiada padanan tepat.
+
+## Kaedah dan had
+
+- Setiap dakwaan yang boleh diukur disertakan angka dan sumber yang boleh disemak.
+- Apabila angka tidak dapat disahkan, kami nyatakan secara terbuka — tidak diisi dengan anggaran.
+- Sampel kecil (kurang 25 rekod) tidak dipaparkan dalam statistik gaji.
+- Dataset gaji adalah cross-sectional, bukan panel — trend mengikut masa **tidak** boleh disimpulkan.
+- Data gaji terakhir dikemas kini Mac 2025.
+
+## Petikan dan lesen
+
+- Kandungan editorial: boleh dipetik dengan kredit penuh (nama + tajuk + pautan).
+- Kami petik karya pihak ketiga di bawah *fair dealing* (s 13(2) Akta Hak Cipta 1987) dengan atribusi penuh dan pautan balik.
+- Untuk permintaan pembetulan atau penarikan, sila hubungi melalui [halaman Sumber & Kredit](https://blackpanthera23.github.io/jejak-edu/sumber-kredit.html).
+
+## Pilihan
+
+- [Semua artikel](https://blackpanthera23.github.io/jejak-edu/blog.html)
+- [Data gaji penuh (7,339 rekod)](https://blackpanthera23.github.io/jejak-edu/gaji.html)
+- [Penulis dan penyumbang](https://blackpanthera23.github.io/jejak-edu/penulis.html)

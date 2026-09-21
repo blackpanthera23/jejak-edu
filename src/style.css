@@ -38,3 +38,36 @@ article.prose blockquote {
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
 }
+
+/* ============================================================
+   A.6 Peraturan CSS untuk modul TL;DR + navigasi
+   ============================================================ */
+
+/* x-cloak HANYA untuk elemen yang memang mesti tersembunyi sebelum Alpine boot.
+   JANGAN letak pada seksyen TL;DR. Lihat A.2. */
+[x-cloak] { display: none !important; }
+
+/* Sembunyikan segitiga asli <details> tanpa mematikan fungsinya */
+summary::-webkit-details-marker { display: none; }
+summary { list-style: none; }
+
+/* Artikel panjang: kekalkan tajuk seksyen di bawah header melekit 64px */
+#kandungan-penuh h2 { scroll-margin-top: 5rem; }
+
+/* Sasaran anchor halaman baharu */
+.anchor-sasaran { scroll-margin-top: 5rem; }
+
+/* Jangan gerakkan apa-apa kalau pengguna minta kurang gerakan.
+   PENTING: peraturan ini TIDAK boleh kena elemen yang Alpine uruskan
+   kemunculannya. Alpine `x-transition` bergantung pada peralihan CSS untuk
+   membuang `display: none`; kalau tempohnya dikurangkan kepada 0.01ms, panel
+   menu mudah alih kekal tersembunyi walaupun `x-show` bernilai true — dan
+   pelayar tanpa menetapkan pilihan ini tidak akan nampak apa-apa masalah.
+   Kita kekecualikan elemen ber-`x-show` dan hanya redam peralihan hiasan. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  :not([x-show]):not([x-show] *):not([x-transition]):not([x-transition] *) {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

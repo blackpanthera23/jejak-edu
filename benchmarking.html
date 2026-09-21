@@ -1,0 +1,667 @@
+<div class="py-12">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <header class="mb-10">
+      <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-full border bg-teal-50 text-teal-700 border-teal-200 mb-4">Data</span>
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight mb-4">
+        Penanda Aras: Di mana Malaysia berdiri
+      </h1>
+      <p class="text-lg text-slate-600 leading-relaxed">
+        Perbandingan dengan OECD, ASEAN dan penanda aras global. Setiap baris ada negara,
+        angka, tahun, dan sumber. Baris yang tiada salah satunya tidak diterbitkan.
+      </p>
+      <p class="mt-4 text-sm text-slate-600">
+        Dikemas kini: 21 September 2026
+      </p>
+    </header>
+
+    <section x-data="tldrModul()" x-init="init()" class="mb-10" aria-labelledby="tldr-tajuk">
+      <div class="bg-teal-50 border border-teal-200 rounded-xl overflow-hidden">
+        <details open data-tldr class="group">
+          <summary class="flex items-center justify-between gap-3 px-5 py-4 cursor-pointer
+                          list-none focus-visible:outline-none focus-visible:ring-2
+                          focus-visible:ring-teal-700 focus-visible:ring-inset">
+            <h2 id="tldr-tajuk" class="text-sm font-bold text-teal-800 uppercase tracking-wide">Ringkasan Pantas</h2>
+            <span class="text-xs text-teal-700 font-semibold" aria-hidden="true">
+              <span class="group-open:hidden">Buka</span>
+              <span class="hidden group-open:inline">Tutup</span>
+            </span>
+          </summary>
+          <div class="px-5 pb-5">
+            <ul class="space-y-2.5 text-slate-800 leading-relaxed">
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>PISA 2025: Sains 419 (+3), Bacaan 393 (+5), Matematik 397 (−11) — kali pertama bawah 400.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Masalah bukan purata, tetapi ekor bawah: 65% gagal Tahap 2 Matematik, hanya 0.6% capai Tahap 5/6.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Nisbah murid–guru rendah Malaysia 11.7 — lebih baik daripada purata OECD 14.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>EF EPI 2025: Malaysia 581, nombor 1 Asia. Tetapi enrolmen tertiari hanya 38.5% — kedua terendah ASEAN+.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Perbelanjaan per murid USD 2,153 — hanya 23% daripada Korea (USD 9,442), tetapi Vietnam mendahului kita dengan perbelanjaan lebih rendah.</span></li>
+            </ul>
+            <p class="mt-4 pt-4 border-t border-teal-200 text-xs text-teal-800">
+              Ringkasan ini bukan pengganti jadual penuh. Setiap angka ada tahun data dan sumber di bawah.
+            </p>
+          </div>
+        </details>
+      </div>
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        <button type="button" @click="bukaPenuh()"
+                :aria-expanded="terbuka ? 'true' : 'false'"
+                aria-controls="kandungan-penuh"
+                class="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-3 rounded-lg
+                       bg-teal-700 hover:bg-teal-800 text-white font-semibold transition-colors
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700
+                       focus-visible:ring-offset-2">
+          <span x-text="terbuka ? 'Tutup balik' : 'Baca penuh'">Baca penuh</span>
+          <svg class="w-4 h-4 transition-transform" :class="terbuka && 'rotate-180'"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
+
+      <nav id="senarai-seksyen" aria-label="Peta kandungan halaman" class="mt-4 bg-white border border-stone-500 rounded-xl p-5">
+        <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wide mb-3">Kandungan</h2>
+        <ol class="space-y-1">
+          <li><a href="#pisa-2025" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">1</span><span class="text-sm">PISA 2025 — Malaysia vs ASEAN</span></a></li>
+          <li><a href="#tahap-kemahiran" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">2</span><span class="text-sm">Tahap kemahiran — masalah ekor bawah</span></a></li>
+          <li><a href="#timss" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">3</span><span class="text-sm">TIMSS 2023</span></a></li>
+          <li><a href="#literasi-pengenalan" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">4</span><span class="text-sm">Learning Poverty &amp; Human Capital</span></a></li>
+          <li><a href="#perbelanjaan" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">5</span><span class="text-sm">Perbelanjaan &amp; enrolmen</span></a></li>
+          <li><a href="#nisbah-guru" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">6</span><span class="text-sm">Nisbah murid–guru</span></a></li>
+          <li><a href="#indeks-lain" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">7</span><span class="text-sm">Indeks inovasi, daya saing, bahasa</span></a></li>
+          <li><a href="#menang-kalah" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">8</span><span class="text-sm">Di mana kita menang, di mana kalah</span></a></li>
+        </ol>
+      </nav>
+    </section>
+
+    <div id="kandungan-penuh" class="space-y-12">
+
+      <!-- ============ 1 ============ -->
+      <section id="pisa-2025" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">PISA 2025 — Malaysia vs ASEAN</h2>
+        <p class="text-slate-600 leading-relaxed mb-3">
+          PISA 2025 dijalankan pada 8 September 2026. Fokus utama: sains. Dimensi baharu:
+          <em>computational problem solving</em> (CPS). <strong>91 negara/ekonomi</strong>,
+          <strong>760,000 murid</strong>.
+        </p>
+        <p class="text-sm text-slate-700 leading-relaxed mb-5">
+          <strong>Jurang Malaysia vs OECD:</strong> sains <strong>−63 mata</strong>,
+          bacaan <strong>−68 mata</strong>, matematik <strong>−66 mata</strong>, CPS <strong>−16 mata</strong>.
+        </p>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Skor PISA 2025 Malaysia dan negara ASEAN, dengan perubahan berbanding 2022 dan kedudukan dunia</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-3 py-3 font-bold text-slate-900 border-b border-stone-500">Negara</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">Sains</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">Δ22</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">Bacaan</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">Δ22</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">Mat.</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">Δ22</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">CPS</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-3 py-3 text-slate-700">Singapura</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">560</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">−2</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">535</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">−8</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">563</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">−12</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">563</td></tr>
+              <tr><td class="px-3 py-3 text-slate-700">Brunei</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">439</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">−6</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">426</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">−4</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">435</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">−7</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">496</td></tr>
+              <tr class="bg-teal-50"><td class="px-3 py-3 font-bold text-teal-900">Malaysia</td><td class="px-3 py-3 text-right font-bold tabular-nums text-teal-900">419</td><td class="px-3 py-3 text-right tabular-nums text-teal-900">+3</td><td class="px-3 py-3 text-right font-bold tabular-nums text-teal-900">393</td><td class="px-3 py-3 text-right tabular-nums text-teal-900">+5</td><td class="px-3 py-3 text-right font-bold tabular-nums text-teal-900">397</td><td class="px-3 py-3 text-right font-bold tabular-nums text-red-700">−11</td><td class="px-3 py-3 text-right font-bold tabular-nums text-teal-900">484</td></tr>
+              <tr><td class="px-3 py-3 text-slate-700">Thailand</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">432</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">+23</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">392</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">+13</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">407</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">+13</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">476</td></tr>
+              <tr><td class="px-3 py-3 text-slate-700">Vietnam</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">457</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">..</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">392</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">..</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">443</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">..</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">461</td></tr>
+              <tr><td class="px-3 py-3 text-slate-700">Indonesia</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">389</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">+6</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">365</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">+7</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">364</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">−2</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">427</td></tr>
+              <tr><td class="px-3 py-3 text-slate-700">Filipina</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">373</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">+17</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">367</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">+20</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">371</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">+16</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">434</td></tr>
+              <tr class="bg-stone-100"><td class="px-3 py-3 font-semibold text-slate-900">Purata OECD</td><td class="px-3 py-3 text-right font-semibold tabular-nums text-slate-900">482</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">−3</td><td class="px-3 py-3 text-right font-semibold tabular-nums text-slate-900">461</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">−14</td><td class="px-3 py-3 text-right font-semibold tabular-nums text-slate-900">463</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">−9</td><td class="px-3 py-3 text-right font-semibold tabular-nums text-slate-900">500</td></tr>
+              <tr><td class="px-3 py-3 text-slate-700">B-S-J-Z (China)</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">597</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">..</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">527</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">..</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">612</td><td class="px-3 py-3 text-right tabular-nums text-slate-600">..</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">560</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-2 text-xs text-slate-600 sm:hidden">Geser jadual ke kiri untuk melihat lebih banyak.</p>
+        <p class="mt-2 text-xs text-slate-600">Tahun data: 2025. ".." bermakna angka tidak dibandingkan dalam sumber. Vietnam tidak menyertai CPS.</p>
+
+        <div class="mt-6 bg-white border border-stone-500 rounded-xl p-5">
+          <h3 class="font-bold text-slate-900 mb-3">Nota penting sebelum membaca jadual ini</h3>
+          <ul class="space-y-2.5 text-sm text-slate-700">
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Malaysia naik 3 mata sains dan 5 mata bacaan, tetapi <strong>kedua-duanya tidak signifikan secara statistik</strong>. Matematik jatuh 11 mata — satu-satunya domain yang merosot secara signifikan.</span></li>
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Malaysia turun <strong>10 anak tangga</strong> ranking sains (52 pada 2022 → 62 pada 2025) walaupun skor naik — kerana negara lain naik lebih banyak.</span></li>
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Thailand 2025 mengatasi Malaysia</strong> dalam sains (432 vs 419) dan matematik (407 vs 397). Pada 2022, Thailand lebih rendah daripada Malaysia dalam ketiga-tiga domain.</span></li>
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Vietnam</strong> unggul dalam sains (457 vs 419) dan matematik (443 vs 397). Bacaan hampir seri — Malaysia 393, Vietnam 392.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 2 ============ -->
+      <section id="tahap-kemahiran" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Tahap kemahiran — masalah ekor bawah</h2>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Ini bahagian yang paling penting. Purata Malaysia tidak jauh daripada OECD dalam CPS,
+          tetapi <strong>ekor bawah</strong> jauh lebih tebal.
+        </p>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-5">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Tahap kemahiran PISA 2025: Malaysia berbanding purata OECD</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Penunjuk</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Malaysia</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">OECD</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Jurang</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">Sains — capai Tahap 2+</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">54%</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">74%</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−20 pp</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-semibold text-slate-900">Matematik — capai Tahap 2+</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">35%</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">65%</td><td class="px-4 py-3 text-right font-bold tabular-nums text-red-700">−30 pp</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Bacaan — capai Tahap 2+</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">44%</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">69%</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−25 pp</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Sains — Tahap 5/6</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">0.5%</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">7%</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−6.5 pp</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Matematik — Tahap 5/6</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">0.6%</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">8%</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−7.4 pp</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Bacaan — Tahap 5+</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">~0%</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">6%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-5 text-xs text-slate-600">Tahun data: 2025. Sumber: OECD — PISA 2025 country note: Malaysia.</p>
+
+        <div class="bg-amber-50 border-2 border-amber-600 rounded-xl p-5">
+          <h3 class="font-bold text-amber-900 mb-2">65% gagal Tahap 2 Matematik</h3>
+          <p class="text-sm text-amber-900 leading-relaxed mb-3">
+            Berbanding 2018, bahagian murid berprestasi rendah (bawah Tahap 2) naik
+            <strong>24 mata peratus</strong> dalam matematik, 10 pp dalam bacaan, 10 pp dalam sains.
+          </p>
+          <p class="text-sm text-amber-900 leading-relaxed">
+            Bermakna: <strong>2018 = 41%</strong> bawah Tahap 2 → <strong>2022 = 59%</strong> →
+            <strong>2025 = 65%</strong>. Pada masa yang sama, hanya <strong>0.6%</strong> murid
+            Malaysia mencapai Tahap 5/6 dalam matematik.
+          </p>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 mt-8 mb-3">Isyarat positif dari PISA 2025</h3>
+        <ul class="space-y-2.5 text-sm text-slate-700">
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>CPS 484</strong> vs OECD 500 — hanya 16 mata jurang, jauh lebih baik daripada domain lain</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>OECD mengiktiraf Malaysia sebagai sistem yang skor CPS <strong>30+ mata lebih tinggi</strong> daripada jangkaan berdasarkan skor sains</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Sokongan guru: hanya <strong>18%</strong> murid Malaysia di sekolah yang dilaporkan kekurangan guru (OECD: 39%)</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>84%</strong> murid Malaysia di sekolah dengan larangan telefon bimbit (OECD: 49%)</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>92%</strong> murid bertanya guru bila perlukan bantuan (OECD: 77%)</span></li>
+        </ul>
+      </section>
+
+      <!-- ============ 3 ============ -->
+      <section id="timss" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">TIMSS 2023</h2>
+
+        <div class="bg-white border border-stone-500 rounded-xl p-5 mb-5">
+          <h3 class="font-bold text-slate-900 mb-2">Nota metodologi kritikal</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            Malaysia menyertai <strong>Gred 8 sahaja</strong> (Tingkatan 2) dalam TIMSS 2023.
+            Malaysia <strong>tidak</strong> menyertai Gred 4. Jadi tiada angka Gred 4 untuk Malaysia
+            pada 2023 — jangan bandingkan dengan Singapura atau Filipina yang mengambil Gred 4.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-5">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Skor TIMSS 2023 Malaysia berbanding 2019</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Penunjuk</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">2023</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">2019</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Perubahan</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Purata antarabangsa</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-semibold text-slate-900">Matematik Gred 8</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">411</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">461</td><td class="px-4 py-3 text-right font-bold tabular-nums text-red-700">−50</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">478</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-semibold text-slate-900">Sains Gred 8</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">426</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">460</td><td class="px-4 py-3 text-right font-bold tabular-nums text-red-700">−34</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">478</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Matematik Gred 4</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">tidak sertai</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">tidak sertai</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">503</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Sains Gred 4</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">tidak sertai</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">tidak sertai</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">494</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-6 text-xs text-slate-600">Tahun data: 2023 (diumumkan 5 Disember 2024). Sumber: IEA/Boston College — TIMSS 2023; KPM — Laporan Awal TIMSS 2023.</p>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Trend TIMSS matematik Gred 8 (1999–2023)</h3>
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Trend skor TIMSS matematik dan sains Gred 8 Malaysia, 1999 hingga 2023</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-3 py-3 font-bold text-slate-900 border-b border-stone-500">Tahun</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">1999</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">2003</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">2007</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">2011</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">2015</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">2019</th>
+                <th scope="col" class="text-right px-3 py-3 font-bold text-slate-900 border-b border-stone-500">2023</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">Matematik</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">519</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">508</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">474</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">440</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">465</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">461</td><td class="px-3 py-3 text-right font-bold tabular-nums text-red-700">411</td></tr>
+              <tr><td class="px-3 py-3 font-semibold text-slate-900">Sains</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">492</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">510</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">471</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">426</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">471</td><td class="px-3 py-3 text-right tabular-nums text-slate-700">460</td><td class="px-3 py-3 text-right font-bold tabular-nums text-red-700">426</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-6 text-xs text-slate-600">
+          Matematik 2023 (411) adalah <strong>terendah pernah dicatat</strong> Malaysia dan
+          <strong>89 mata bawah</strong> skala titik tengah TIMSS (500).
+        </p>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Matematik</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">48%</p>
+            <p class="text-sm text-slate-600 mt-1">tidak capai aras rendah (bawah 400)</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Sains</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">39%</p>
+            <p class="text-sm text-slate-600 mt-1">tidak capai aras rendah (bawah 400)</p>
+          </div>
+        </div>
+        <p class="mt-3 text-xs text-slate-600">
+          KPM melaporkan guru menilai <strong>40.8%</strong> murid kurang pengetahuan asas matematik
+          dan <strong>26.5%</strong> kurang asas sains. Skor tertinggi individu: 789 matematik, 766 sains.
+        </p>
+      </section>
+
+      <!-- ============ 4 ============ -->
+      <section id="literasi-pengenalan" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Learning Poverty &amp; Human Capital</h2>
+
+        <div class="bg-white border border-stone-500 rounded-xl p-5 mb-5">
+          <h3 class="font-bold text-slate-900 mb-2">Apa maksud "Learning Poverty"</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            Peratus kanak-kanak umur 10 tahun yang tidak boleh membaca dan memahami teks pendek
+            sesuai umur, diselaraskan untuk kanak-kanak luar sekolah. Ini <strong>bukan</strong>
+            ujian terus — ia proksi yang digabung daripada data pentaksiran kebangsaan.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Learning Poverty mengikut negara</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Negara</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Learning Poverty</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Tahun data</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">Filipina</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">90.9%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2019</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Cambodia</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">90.0%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2019</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Indonesia</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">52.8%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2015</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-900">Malaysia</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">42.0%</td><td class="px-4 py-3 text-right tabular-nums text-teal-900">2019</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Vietnam</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">18.1%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2019</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Jepun</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">3.6%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2019</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Singapura</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">3.4%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2021</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Korea</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">3.2%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2019</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-5 text-xs text-slate-600">
+          Sumber: World Bank / UIS. <strong>Amaran metodologi:</strong> angka Malaysia berubah besar
+          antara edisi brief (13% → 43% → 42%) kerana perubahan sumber data dan harmonisasi — bukan
+          perubahan prestasi sebenar. Gunakan versi terkini (2024) sahaja.
+        </p>
+
+        <p class="text-slate-600 leading-relaxed mb-6">
+          Brief Malaysia (April 2024): Learning Poverty 42% — <strong>8 pp lebih buruk</strong>
+          daripada purata Asia Timur &amp; Pasifik (34%). Human Capital Index <strong>0.61</strong>,
+          Learning-Adjusted Years of Schooling <strong>8.9 tahun</strong>.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Human Capital Index 2020</h3>
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Human Capital Index 2020 mengikut negara</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Negara</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">HCI 2020</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Tafsiran</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">Singapura</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.879</td><td class="px-4 py-3 text-slate-600">88% potensi produktiviti</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Jepun</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.805</td><td class="px-4 py-3 text-slate-600">81%</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Korea</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.799</td><td class="px-4 py-3 text-slate-600">80%</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Vietnam</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.690</td><td class="px-4 py-3 text-slate-600">69%</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Brunei</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.626</td><td class="px-4 py-3 text-slate-600">63%</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-900">Malaysia</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">0.611</td><td class="px-4 py-3 text-slate-700">61%</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Thailand</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.609</td><td class="px-4 py-3 text-slate-600">61%</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Indonesia</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.540</td><td class="px-4 py-3 text-slate-600">54%</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Filipina</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.516</td><td class="px-4 py-3 text-slate-600">52%</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Purata dunia</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">0.56</td><td class="px-4 py-3 text-slate-600">56%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-2 text-xs text-slate-600">
+          Tahun data: 2020. Jurang Malaysia–Vietnam: <strong>−0.079</strong>. Jurang Malaysia–Singapura:
+          <strong>−0.268</strong>. Sumber: World Bank — Human Capital Index.
+        </p>
+      </section>
+
+      <!-- ============ 5 ============ -->
+      <section id="perbelanjaan" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Perbelanjaan &amp; enrolmen</h2>
+
+        <div class="bg-amber-50 border-2 border-amber-600 rounded-xl p-5 mb-5">
+          <h3 class="font-bold text-amber-900 mb-2">Amaran metodologi</h3>
+          <p class="text-sm text-amber-900 leading-relaxed">
+            OECD Education at a Glance 2025 <strong>tidak memasukkan Malaysia</strong> sebagai negara
+            peserta. Angka Malaysia datang dari World Bank/UNESCO (definisi berbeza: perbelanjaan
+            kerajaan pada institusi pendidikan). <strong>Jangan bandingkan terus tanpa nota ini.</strong>
+          </p>
+        </div>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-5">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Perbelanjaan pendidikan sebagai peratus KDNK mengikut negara</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Negara</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">% KDNK</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Tahun</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Definisi</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">United Kingdom</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">5.9%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2021</td><td class="px-4 py-3 text-slate-600">WB, kerajaan</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Korea</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">5.4%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2022</td><td class="px-4 py-3 text-slate-600">WB, kerajaan</td></tr>
+              <tr class="bg-stone-100"><td class="px-4 py-3 font-semibold text-slate-900">Purata OECD (EaG 2025)</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">4.7%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2022</td><td class="px-4 py-3 text-slate-600">Institusi pendidikan (kerajaan + swasta)</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-900">Malaysia</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">3.51%</td><td class="px-4 py-3 text-right tabular-nums text-teal-900">2023</td><td class="px-4 py-3 text-slate-700">WB/UNESCO, kerajaan</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Jepun</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">3.3%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2021</td><td class="px-4 py-3 text-slate-600">WB, kerajaan</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Vietnam</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">2.9%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2022</td><td class="px-4 py-3 text-slate-600">WB, kerajaan</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Thailand</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">2.5%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2023</td><td class="px-4 py-3 text-slate-600">WB, kerajaan</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Singapura</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">2.2%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2024</td><td class="px-4 py-3 text-slate-600">WB, kerajaan</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Indonesia</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">1.3%</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2023</td><td class="px-4 py-3 text-slate-600">WB, kerajaan</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Perbelanjaan per murid (IMD World Talent Ranking 2025)</h3>
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Perbelanjaan pendidikan per murid dan sebagai peratus KDNK</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Negara</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">% KDNK (rank)</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Per murid USD (rank)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">Singapura</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">5.2% (17)</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">6,030 (38)</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Korea</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">4.6% (36)</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">9,442 (23)</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-900">Malaysia</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">4.2% (43)</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">2,153 (48)</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Thailand</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">3.4% (53)</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">6,313 (34)</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Indonesia</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">1.3% (66)</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">262 (64)</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Filipina</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">3.3% (55)</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">443 (62)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-6 text-xs text-slate-600">
+          Perbelanjaan per murid Malaysia (USD 2,153) hanya <strong>36%</strong> daripada Singapura
+          (USD 6,030) dan <strong>23%</strong> daripada Korea (USD 9,442). Tahun data: 2025 (indeks).
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Enrolmen kasar (GER) Malaysia</h3>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Prasekolah — 2024</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">90.7%</p>
+            <p class="text-sm text-slate-600 mt-1">umur 5 tahun. Sasaran: 98%. GER 2021 (WB): 87.5%.</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Rendah — 2024</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">90.4%</p>
+            <p class="text-sm text-slate-600 mt-1">Vietnam 106.3%, Thailand 100.7%, Singapura 100.2%.</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Menengah — 2024</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">80.3%</p>
+            <p class="text-sm text-slate-600 mt-1">Terendah dalam kumpulan. Trend: 81.5% (2015) → 73.2% (2020) → 80.3% (2024).</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Tertiari — 2024</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">38.5%</p>
+            <p class="text-sm text-slate-600 mt-1">Kedua terendah ASEAN+. Trend menurun: 45.4% (2016) → 40.8% (2019) → 38.5% (2024).</p>
+          </div>
+        </div>
+        <p class="mt-3 text-xs text-slate-600">
+          Nilai GER melebihi 100% adalah normal — pelajar luar kumpulan umur turut mendaftar. Sumber:
+          UNESCO UIS melalui World Bank; OECD Economic Surveys Malaysia 2026.
+        </p>
+      </section>
+
+      <!-- ============ 6 ============ -->
+      <section id="nisbah-guru" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Nisbah murid–guru</h2>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Lebih rendah = lebih baik. Ini kekuatan sistem yang jarang disebut.
+        </p>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Nisbah murid per guru, rendah dan menengah</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Negara</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Rendah</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Tahun</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Menengah</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Tahun</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">Brunei</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">9.9</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2018</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">8.3</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2018</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-900">Malaysia</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">11.7</td><td class="px-4 py-3 text-right tabular-nums text-teal-900">2017</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">11.4</td><td class="px-4 py-3 text-right tabular-nums text-teal-900">2018</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Singapura</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">14.7</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2017</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">11.5</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2017</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Thailand</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">16.6</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2018</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">25.9</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2018</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Indonesia</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">17.0</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2018</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">15.2</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2018</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Vietnam</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">20.3</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2018</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Filipina</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">29.1</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2017</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">23.9</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2017</td></tr>
+              <tr class="bg-stone-100"><td class="px-4 py-3 font-semibold text-slate-900">Purata OECD</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">14</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2023</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-slate-600">
+          Sumber: World Bank/UNESCO. <strong>Nota metodologi:</strong> angka WB/UNESCO Malaysia
+          terhenti pada 2017–2018. IMD World Talent Ranking 2025 melaporkan nisbah Malaysia
+          <strong>12.30 rendah</strong> (rank 22/69) dan <strong>11.30 menengah</strong> (rank 22/69)
+          — konsisten dengan angka WB.
+        </p>
+      </section>
+
+      <!-- ============ 7 ============ -->
+      <section id="indeks-lain" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Indeks inovasi, daya saing, bahasa</h2>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Global Innovation Index 2025 (WIPO)</h3>
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Global Innovation Index 2025 dan sub-indeks modal insan</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Negara</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">GII 2025</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Modal insan &amp; penyelidikan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">Korea</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">4</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">1</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Singapura</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">5</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-900">2</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Jepun</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">12</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">18</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-900">Malaysia</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">34</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">46</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Vietnam</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">44</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">70</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Thailand</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">45</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">53</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Filipina</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">50</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">90</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Indonesia</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">55</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">92</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-6 text-xs text-slate-600">
+          Malaysia turun daripada GII 38 (2024) ke 34 — merujuk kepada ranking GII keseluruhan.
+          Kelemahan indikator: <em>Expenditure on education % GDP</em> rank 91; <em>School life
+          expectancy</em> rank 98; <em>Tertiary enrolment</em> rank 85; <em>PISA scales</em> rank 58.
+          Kekuatan: <em>Graduates in science and engineering</em> <strong>rank 1 dunia</strong>.
+          GII 2025 merangkumi 139 ekonomi; selang keyakinan ranking Malaysia 33–36.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">EF English Proficiency Index 2025</h3>
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">EF English Proficiency Index 2025</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Negara</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Skor 2025</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Rank global</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Band</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Δ</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-900">Malaysia</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">581</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">24</td><td class="px-4 py-3 text-slate-700">High</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-teal-900">+15</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Filipina</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">569</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">28</td><td class="px-4 py-3 text-slate-600">High</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">−1</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Vietnam</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">500</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">64</td><td class="px-4 py-3 text-slate-600">Moderate</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">+2</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Indonesia</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">471</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">80</td><td class="px-4 py-3 text-slate-600">Low</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">+3</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Thailand</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">402</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">116</td><td class="px-4 py-3 text-slate-600">Very low</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">−13</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Cambodia</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">390</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">123</td><td class="px-4 py-3 text-slate-600">Very low</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">−18</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-6 text-xs text-slate-600">
+          <strong>Nota metodologi:</strong> EF EPI mengukur kemahiran bahasa Inggeris <em>orang
+          dewasa</em> yang mengambil ujian EF SET — ia bukan ukuran sistem sekolah. Singapura
+          <strong>dikeluarkan</strong> dari indeks 2025. Malaysia = <strong>#1 Asia</strong>;
+          skor 581 ialah tertinggi dalam siri (2011: 563 → 2024: 566 → 2025: 581).
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">IMD World Talent Ranking 2025</h3>
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">IMD World Talent Ranking 2025</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Ekonomi</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Rank 2025</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Skor</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Rank 2024</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">Hong Kong SAR</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">4</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">80.10</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">9</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Singapura</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">7</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">78.00</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">2</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-bold text-teal-900">Malaysia</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">25</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">65.18</td><td class="px-4 py-3 text-right tabular-nums text-teal-900">33</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Korea</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">37</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">58.15</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">48</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Jepun</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">40</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">57.67</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">43</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Thailand</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">43</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">54.98</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">47</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Indonesia</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">53</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">45.87</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">46</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Filipina</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">64</td><td class="px-4 py-3 text-right tabular-nums text-slate-700">34.72</td><td class="px-4 py-3 text-right tabular-nums text-slate-600">63</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-2 text-xs text-slate-600">
+          Malaysia naik 8 anak tangga (33 → 25) — kedua tertinggi ASEAN selepas Singapura. Faktor:
+          Investment &amp; Development rank 39, Appeal rank 21, Readiness rank 17. Vietnam tidak
+          disertakan dalam WTR 2025.
+        </p>
+      </section>
+
+      <!-- ============ 8 ============ -->
+      <section id="menang-kalah" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Di mana kita menang, di mana kalah</h2>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Kalah / jurang besar</h3>
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-6">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Metrik di mana Malaysia kalah berbanding pembanding</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Metrik</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Malaysia</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Pembanding</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Jurang</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">PISA 2025 matematik</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">397</td><td class="px-4 py-3 text-slate-600">Singapura 563</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−166</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">PISA 2025 matematik</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">397</td><td class="px-4 py-3 text-slate-600">Vietnam 443</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−46</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">PISA 2025 matematik</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">397</td><td class="px-4 py-3 text-slate-600">Thailand 407</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−10</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">PISA 2025 sains</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">419</td><td class="px-4 py-3 text-slate-600">Vietnam 457</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−38</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">TIMSS 2023 matematik G8</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">411</td><td class="px-4 py-3 text-slate-600">Singapura 605</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−194</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Learning Poverty</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">42%</td><td class="px-4 py-3 text-slate-600">Vietnam 18.1%</td><td class="px-4 py-3 text-right tabular-nums text-red-700">+23.9 pp</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">HCI 2020</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">0.611</td><td class="px-4 py-3 text-slate-600">Vietnam 0.690</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−0.079</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Perbelanjaan per murid</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">USD 2,153</td><td class="px-4 py-3 text-slate-600">Korea USD 9,442</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−77%</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Enrolmen tertiari</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">38.5%</td><td class="px-4 py-3 text-slate-600">Singapura 97.3%</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−58.8 pp</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Enrolmen menengah</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">80.3%</td><td class="px-4 py-3 text-slate-600">Singapura 103.1%</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−22.8 pp</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">GII modal insan</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">rank 46</td><td class="px-4 py-3 text-slate-600">Korea rank 1</td><td class="px-4 py-3 text-right tabular-nums text-red-700">−45</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Menang / kekuatan</h3>
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-6">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Metrik di mana Malaysia lebih baik berbanding pembanding</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Metrik</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Malaysia</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Pembanding</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Kelebihan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr class="bg-teal-50"><td class="px-4 py-3 text-slate-700">EF EPI 2025</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-teal-900">581 (#1 Asia)</td><td class="px-4 py-3 text-slate-700">Filipina 569</td><td class="px-4 py-3 text-right tabular-nums text-teal-700">+12</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 text-slate-700">Nisbah murid–guru rendah</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-teal-900">11.7</td><td class="px-4 py-3 text-slate-700">OECD 14</td><td class="px-4 py-3 text-right tabular-nums text-teal-700">lebih baik</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 text-slate-700">Nisbah murid–guru menengah</td><td class="px-4 py-3 text-right font-semibold tabular-nums text-teal-900">11.4</td><td class="px-4 py-3 text-slate-700">Thailand 25.9</td><td class="px-4 py-3 text-right tabular-nums text-teal-700">lebih baik</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">PISA CPS 2025</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">484</td><td class="px-4 py-3 text-slate-700">Thailand 476</td><td class="px-4 py-3 text-right tabular-nums text-teal-700">+8</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">IMD Talent 2025</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">rank 25</td><td class="px-4 py-3 text-slate-700">Thailand 43, Indonesia 53</td><td class="px-4 py-3 text-right tabular-nums text-teal-700">jauh lebih baik</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">GII graduan sains &amp; kejuruteraan</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">rank 1 dunia</td><td class="px-4 py-3 text-slate-700">—</td><td class="px-4 py-3 text-right tabular-nums text-teal-700">terbaik dunia</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Sokongan guru (PISA)</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">18% lapor kekurangan</td><td class="px-4 py-3 text-slate-700">OECD 39%</td><td class="px-4 py-3 text-right tabular-nums text-teal-700">lebih baik</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bg-white border border-stone-500 rounded-xl p-5">
+          <h3 class="font-bold text-slate-900 mb-3">Empat mesej utama</h3>
+          <ol class="space-y-4 text-sm text-slate-700">
+            <li class="flex gap-3"><span class="w-5 h-5 rounded-full bg-teal-700 text-white text-xs font-bold flex items-center justify-center shrink-0" aria-hidden="true">1</span><span><strong>Sains dan bacaan naik, matematik jatuh.</strong> Dua kenaikan itu tidak signifikan secara statistik. Matematik kini 397 — pertama kali bawah 400.</span></li>
+            <li class="flex gap-3"><span class="w-5 h-5 rounded-full bg-teal-700 text-white text-xs font-bold flex items-center justify-center shrink-0" aria-hidden="true">2</span><span><strong>Masalah bukan purata, masalah ialah ekor bawah.</strong> 65% gagal Tahap 2 matematik. Hanya 0.6% capai Tahap 5/6. Sistem menghasilkan terlalu ramai murid lemah dan terlalu sedikit murid cemerlang.</span></li>
+            <li class="flex gap-3"><span class="w-5 h-5 rounded-full bg-teal-700 text-white text-xs font-bold flex items-center justify-center shrink-0" aria-hidden="true">3</span><span><strong>Malaysia kalah bukan kerana guru atau bahasa.</strong> Nisbah murid–guru antara terbaik dunia. Bahasa Inggeris #1 Asia. Yang kalah: perbelanjaan per murid, enrolmen menengah &amp; tertiari, dan kualiti asas literasi/numerasi.</span></li>
+            <li class="flex gap-3"><span class="w-5 h-5 rounded-full bg-teal-700 text-white text-xs font-bold flex items-center justify-center shrink-0" aria-hidden="true">4</span><span><strong>Pesaing utama bukan Singapura sahaja — Vietnam dan Thailand.</strong> Vietnam mendahului Malaysia dalam ketiga-tiga domain PISA 2025 dengan perbelanjaan per murid lebih rendah. Thailand mengatasi Malaysia pada 2025 selepas ketinggalan pada 2022.</span></li>
+          </ol>
+        </div>
+      </section>
+    </div>
+
+    <aside class="mt-12 bg-stone-100 border border-stone-500 rounded-xl p-6" aria-labelledby="rujukan-tajuk">
+      <h2 id="rujukan-tajuk" class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Sumber &amp; nota metodologi</h2>
+      <ol class="space-y-2.5">
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">1</span><span class="text-sm text-slate-700">OECD — PISA 2025 Results (Volume I): Insights and Interpretations; country note: Malaysia; Annex B1</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">2</span><span class="text-sm text-slate-700">IEA / Boston College — TIMSS 2023 International Results in Mathematics and Science; KPM — Laporan Awal TIMSS 2023</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">3</span><span class="text-sm text-slate-700">World Bank — Malaysia Learning Poverty Brief (April 2024); Human Capital Index 2020; World Bank/UNESCO UIS untuk enrolmen dan nisbah murid–guru</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">4</span><span class="text-sm text-slate-700">OECD — Education at a Glance 2025; OECD Economic Surveys: Malaysia 2026</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">5</span><span class="text-sm text-slate-700">WIPO — Global Innovation Index 2025 (profil Malaysia); WEF — Global Competitiveness Report 2019 (GCR dihentikan 2020)</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">6</span><span class="text-sm text-slate-700">EF — EF English Proficiency Index 2025; IMD — World Talent Ranking 2025</span></li>
+      </ol>
+      <div class="mt-5 pt-4 border-t border-stone-200 space-y-2 text-xs text-slate-600">
+        <p><strong>PISA vs TIMSS tidak boleh dicampur.</strong> PISA = murid 15 tahun (bukan ikut gred), fokus aplikasi dunia sebenar. TIMSS = ikut gred, fokus kurikulum. Skor tidak setara.</p>
+        <p><strong>Perbelanjaan pendidikan:</strong> definisi OECD EaG (institusi pendidikan) berbeza daripada World Bank/UNESCO (perbelanjaan kerajaan). Jangan bandingkan terus.</p>
+        <p><strong>WEF GCI sudah dihentikan pada 2020.</strong> Tiada angka lebih baharu. Ia dinyatakan sebagai konteks bertarikh sahaja.</p>
+      </div>
+    </aside>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href="/sejarah-pendidikan.html" class="inline-flex items-center justify-center min-h-11 px-5 py-3 rounded-lg bg-white border border-slate-500 text-slate-700 hover:bg-stone-100 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2">
+        Sejarah pendidikan 1816–2026
+      </a>
+      <a href="/gaji.html" class="inline-flex items-center justify-center min-h-11 px-5 py-3 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2">
+        Data gaji graduan
+      </a>
+    </div>
+
+  </div>
+</div>

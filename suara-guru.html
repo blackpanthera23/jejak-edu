@@ -1,0 +1,657 @@
+<div class="py-12">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <header class="mb-10">
+      <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-full border bg-amber-50 text-amber-700 border-amber-200 mb-4">Suara</span>
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight mb-4">Suara Guru</h1>
+      <p class="text-lg text-slate-600 leading-relaxed">
+        Apa yang guru Malaysia katakan tentang kerja mereka — dengan angka, dan dengan
+        atribusi jelas siapa yang berkata.
+      </p>
+      <p class="mt-4 text-sm text-slate-600 leading-relaxed">
+        Halaman ini memisahkan <strong>data</strong> (kajian dan laporan rasmi) daripada
+        <strong>sentimen</strong> (pandangan kesatuan dan suara awam). Apabila angka datang
+        daripada kesatuan dan bukan KPM, ia dilabel sedemikian.
+      </p>
+    </header>
+
+    <section x-data="tldrModul()" x-init="init()" class="mb-10" aria-labelledby="tldr-tajuk">
+      <div class="bg-teal-50 border border-teal-200 rounded-xl overflow-hidden">
+        <details open data-tldr class="group">
+          <summary class="flex items-center justify-between gap-3 px-5 py-4 cursor-pointer
+                          list-none focus-visible:outline-none focus-visible:ring-2
+                          focus-visible:ring-teal-700 focus-visible:ring-inset">
+            <h2 id="tldr-tajuk" class="text-sm font-bold text-teal-800 uppercase tracking-wide">Ringkasan Pantas</h2>
+            <span class="text-xs text-teal-700 font-semibold" aria-hidden="true">
+              <span class="group-open:hidden">Buka</span>
+              <span class="hidden group-open:inline">Tutup</span>
+            </span>
+          </summary>
+          <div class="px-5 pb-5">
+            <ul class="space-y-2.5 text-slate-800 leading-relaxed">
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Kajian KPM 2011: guru bekerja purata 57 jam seminggu, tetapi masa untuk pengajaran lebih pendek daripada masa bekerja.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Kadar pengisian jawatan guru: 96.51% (Ogos 2025) dan 98.11% (Jun 2026) — angka rasmi KPM.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Kajian UM: 369 guru sekolah rendah Melaka — lebih 83% melaporkan burnout.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Gangguan suara: prevalens seumur hidup 52.4% dalam kalangan 1,216 guru menengah.</span></li>
+              <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Dasar 80:20 dalam RPM 2026–2035 memisahkan masa PdP daripada tugas bukan pengajaran — pelaksanaannya yang perlu diperhatikan.</span></li>
+            </ul>
+            <p class="mt-4 pt-4 border-t border-teal-200 text-xs text-teal-800">
+              Ringkasan ini bukan pengganti halaman penuh. Setiap angka ada tahun data dan sumber di bawah.
+            </p>
+          </div>
+        </details>
+      </div>
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        <button type="button" @click="bukaPenuh()"
+                :aria-expanded="terbuka ? 'true' : 'false'"
+                aria-controls="kandungan-penuh"
+                class="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-3 rounded-lg
+                       bg-teal-700 hover:bg-teal-800 text-white font-semibold transition-colors
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700
+                       focus-visible:ring-offset-2">
+          <span x-text="terbuka ? 'Tutup balik' : 'Baca penuh'">Baca penuh</span>
+          <svg class="w-4 h-4 transition-transform" :class="terbuka && 'rotate-180'"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
+
+      <nav id="senarai-seksyen" aria-label="Peta kandungan halaman" class="mt-4 bg-white border border-stone-500 rounded-xl p-5">
+        <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wide mb-3">Kandungan</h2>
+        <ol class="space-y-1">
+          <li><a href="#beban-kerja" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">1</span><span class="text-sm">Beban kerja: mengajar vs pentadbiran</span></a></li>
+          <li><a href="#kekurangan-guru" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">2</span><span class="text-sm">Kekurangan guru — angka vs anggaran</span></a></li>
+          <li><a href="#gaji-guru" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">3</span><span class="text-sm">Gaji guru</span></a></li>
+          <li><a href="#kesihatan-mental" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">4</span><span class="text-sm">Kesihatan mental guru</span></a></li>
+          <li><a href="#suara-awam" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">5</span><span class="text-sm">Suara awam — aduan dan kebanggaan</span></a></li>
+          <li><a href="#inisiatif" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">6</span><span class="text-sm">Inisiatif: dijanjikan vs sampai</span></a></li>
+          <li><a href="#dlp-guru" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">7</span><span class="text-sm">Isu DLP dari sudut guru</span></a></li>
+          <li><a href="#hantar-guru" class="flex items-center gap-3 min-h-11 px-3 rounded-lg text-slate-700 hover:bg-stone-100 hover:text-teal-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"><span class="text-xs font-bold text-slate-600 tabular-nums" aria-hidden="true">8</span><span class="text-sm">Hantar tulisan anda</span></a></li>
+        </ol>
+      </nav>
+    </section>
+
+    <div id="kandungan-penuh" class="space-y-12">
+
+      <!-- ============ 1 ============ -->
+      <section id="beban-kerja" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Beban kerja: mengajar vs pentadbiran</h2>
+
+        <div class="grid gap-4 sm:grid-cols-2 mb-5">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Kajian KPM 2011</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">57 jam</p>
+            <p class="text-sm text-slate-600 mt-1">seminggu, purata. Melebihi masa bekerja guru dalam kajian perbandingan antarabangsa.</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Dasar 80:20 (RPM 2026–2035)</p>
+            <p class="text-3xl font-bold text-teal-700 tabular-nums stat-num">80:20</p>
+            <p class="text-sm text-slate-600 mt-1">80% masa guru mata pelajaran untuk PdP; 20% untuk tugas bukan pengajaran.</p>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 border-2 border-amber-600 rounded-xl p-5 mb-5">
+          <h3 class="font-bold text-amber-900 mb-2">Angka 57 jam itu dari tahun 2011</h3>
+          <p class="text-sm text-amber-900 leading-relaxed">
+            Ia kini berusia <strong>15 tahun</strong>. Tiada kajian beban kerja nasional yang lebih
+            terkini ditemui dalam carian kami. Angka ini mesti dibaca dengan tahunnya.
+          </p>
+        </div>
+
+        <p class="text-slate-600 leading-relaxed mb-4">
+          Kementerian sendiri mengakui bahawa walaupun masa bekerja panjang,
+          <strong>peratusan masa untuk pengajaran dan pembelajaran (PdP) adalah lebih pendek</strong>.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Kajian akademik beban tugas sampingan guru sekolah rendah Johor (2022) menyenaraikan tugas
+          bukan akademik yang memakan masa PdPc: penyelaras pusat sumber, setiausaha jadual waktu,
+          setiausaha peperiksaan dalaman, setiausaha HEM, guru bimbingan dan kaunseling, penyelaras
+          disiplin/kantin/kesihatan.
+        </p>
+
+        <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed mb-5">
+          "Guru sebelum ini hanya perlu mengajar, menanda buku latihan dan menyediakan soalan
+          peperiksaan, tanpa tugas tambahan berkaitan perkeranian dan pendigitalan."
+          <span class="block mt-2 text-xs text-slate-600">Setiausaha Agung NUTP, Fouzi Singon (September 2025) — sumber kesatuan, bukan KPM</span>
+        </blockquote>
+
+        <p class="text-slate-600 leading-relaxed">
+          NUTP mengenal pasti punca utama beban berterusan: <strong>sistem pengurusan dalam talian
+          yang tidak mesra pengguna</strong>, terutama pengisian data.
+        </p>
+        <p class="mt-3 text-xs text-slate-600">
+          Sumber: Jurnal Kepimpinan Pendidikan (JUPIDI/UTM), "Beban tugas sampingan guru di sekolah rendah
+          di negeri Johor" (Jan 2022); NST (24 Mac 2026); TVS Sarawak (7 Julai 2025); Free Malaysia Today (4 Sept 2025).
+        </p>
+      </section>
+
+      <!-- ============ 2 ============ -->
+      <section id="kekurangan-guru" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Kekurangan guru — angka vs anggaran</h2>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Dua angka berbeza beredar tentang perkara yang sama. Perbezaannya bukan siapa betul —
+          tetapi <strong>apa yang diukur</strong>.
+        </p>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Kadar pengisian jawatan guru mengikut tarikh, angka rasmi KPM</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Tarikh</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Angka</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Metrik</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">31 Ogos 2025</td><td class="px-4 py-3 font-semibold tabular-nums text-slate-900">96.51%</td><td class="px-4 py-3 text-slate-600">416,096 guru diisi daripada 431,128 perjawatan (KPM)</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">31 Dis 2025</td><td class="px-4 py-3 font-semibold tabular-nums text-slate-900">97.68%</td><td class="px-4 py-3 text-slate-600">Kadar pengisian (KPM)</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-semibold text-teal-900">Jun 2026</td><td class="px-4 py-3 font-bold tabular-nums text-teal-900">98.11%</td><td class="px-4 py-3 text-slate-700">422,804 guru berkhidmat (KPM)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-6 text-xs text-slate-600">Sumber: Bernama (28 Okt 2025); Kosmo (1 Julai 2026)</p>
+
+        <div class="bg-white border border-stone-500 rounded-xl p-5 mb-5">
+          <h3 class="font-bold text-slate-900 mb-3">Metodologi berbeza, kedua-duanya sah</h3>
+          <dl class="space-y-3 text-sm">
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold text-slate-900 sm:w-32 shrink-0">KPM</dt>
+              <dd class="text-slate-700">Mengukur <strong>kadar pengisian</strong> — berapa peratus perjawatan yang telah diisi. Ini bukan ukuran kecukupan mengikut subjek atau lokasi.</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold text-slate-900 sm:w-32 shrink-0">NUTP</dt>
+              <dd class="text-slate-700">Menganggarkan <strong>kekurangan</strong> ~10,000 guru (Julai 2025), dan mencadangkan bahawa jika <strong>8%</strong> daripada ~420,000 jawatan tidak dipenuhi, ia membawa jumlah <strong>33,600 orang</strong>. Ini anggaran kesatuan, bukan data rasmi JPA/KPM.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Keadaan mengikut negeri</h3>
+        <ul class="space-y-2.5 text-sm text-slate-700 mb-5">
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Negeri paling teruk</strong> (kadar pengisian, 31 Ogos 2025): Johor, Pahang, Sarawak dan Pulau Pinang — masing-masing bawah <strong>96%</strong>. Tertinggi: Putrajaya <strong>100%</strong>, Sabah <strong>98%</strong>, Labuan <strong>97.7%</strong>.</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Sarawak:</strong> kekurangan awal <strong>1,134–1,140 guru</strong> (2024); <strong>~15,000 permohonan</strong> untuk jawatan itu. Menjelang 31 Dis 2025: <strong>42,315 guru</strong> daripada <strong>43,257 jawatan</strong> (97.82%). Sepanjang 2025, <strong>3,237 guru baharu</strong> ditempatkan.</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Masalah lapor diri:</strong> 7 guru pengambilan khas Sarawak <strong>meletak jawatan</strong> dan <strong>51 tidak melapor diri</strong> (Nov 2025) — sebab: tawaran kerja lain, menolak penempatan, isu peribadi.</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Sabah:</strong> <strong>968 sekolah</strong> beroperasi pada bangunan <strong>daif (Skala 7)</strong> setakat 31 Dis 2025. Dasar <strong>90:10</strong> (90% guru anak tempatan Sabah) mencapai <strong>89.72%</strong> setakat 30 Jun 2026; kadar pengisian <strong>97.45%</strong>.</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Sekolah SJKC Sabah:</strong> kekurangan guru digambarkan sebagai isu <strong>kronik</strong> oleh Sabah Dong Lian (Feb 2026).</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>IPGM sendiri kekurangan pensyarah.</strong> Pengambilan berpusat 2000–2022 tidak mencukupi; ketidakpadanan bidang kepakaran dengan keperluan pengajaran masih berlaku.</span></li>
+        </ul>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Pengambilan 2025</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">20,141–20,173</p>
+            <p class="text-sm text-slate-600 mt-1">guru baharu ditempatkan</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">PISMP 2025</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">11,000</p>
+            <p class="text-sm text-slate-600 mt-1">pengambilan latihan guru praperkhidmatan, naik daripada 6,000–6,300 (2024)</p>
+          </div>
+        </div>
+        <p class="mt-3 text-xs text-slate-600">
+          Pengurangan ambilan guru kontrak (COS) 2027: KPM menyasarkan hanya <strong>3,150 guru COS</strong>
+          berbanding unjuran awal <strong>20,000</strong> — kerana pendaftaran murid 6 tahun hanya
+          <strong>73,386</strong> berbanding unjuran <strong>400,000</strong>.
+          Sumber: Utusan Malaysia (13 &amp; 25 Nov 2025); Borneo Post (5 Feb 2026); Free Malaysia Today (24 Jun 2026).
+        </p>
+      </section>
+
+      <!-- ============ 3 ============ -->
+      <section id="gaji-guru" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Gaji guru</h2>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Gaji DG41 di bawah SSPA</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Peringkat</th>
+                <th scope="col" class="text-right px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Gaji bulanan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 text-slate-700">Sebelum Nov 2024 (SSM)</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">RM3,838.00</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Fasa 1 SSPA (Dis 2024)</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">RM4,085.04</td></tr>
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-semibold text-teal-900">Fasa 2 SSPA (Jan 2026)</td><td class="px-4 py-3 text-right font-bold tabular-nums text-teal-900">RM4,559.24</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">Julat jadual SSPA DG41</td><td class="px-4 py-3 text-right tabular-nums text-slate-900">RM3,200–RM5,500</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-5 text-xs text-slate-600">
+          Gaji Fasa 2 = gaji pokok + elaun, <strong>tidak termasuk elaun khusus</strong>.
+          Bermula 2026, SSPA menamakan semula <strong>DG41 sebagai DG9</strong>.
+        </p>
+
+        <div class="bg-amber-50 border-2 border-amber-600 rounded-xl p-5 mb-5">
+          <h3 class="font-bold text-amber-900 mb-2">Konflik angka gaji permulaan</h3>
+          <p class="text-sm text-amber-900 leading-relaxed">
+            Tiga angka berbeza beredar untuk "gaji permulaan DG41": <strong>RM2,188</strong> (skim
+            SSM, sumber SPA negeri), <strong>~RM2,200</strong> (artikel 2017, gaji pokok tanpa elaun),
+            dan <strong>RM3,200 minimum</strong> (jadual SSPA 2024). Perbezaannya adalah antara
+            <strong>sistem saraan lama dan baharu</strong>, serta sama ada elaun dikira.
+          </p>
+        </div>
+
+        <p class="text-slate-600 leading-relaxed mb-3">
+          Untuk konteks: median gaji nasional (DOSM, data 2024) ialah <strong>RM2,793 sebulan</strong>;
+          purata <strong>RM3,652</strong>. Perbandingan sektor awam lain di bawah SSPA 2024:
+          Jururawat U29 RM2,457 → RM2,994.74; Prebet ZA1 RM2,379 → RM2,857.63;
+          Konstabel YA1 RM2,256 → RM2,726.02.
+        </p>
+
+        <div class="bg-white border border-stone-500 rounded-xl p-5">
+          <h3 class="font-bold text-slate-900 mb-3">Guru membiayai bahan sendiri</h3>
+          <p class="text-sm text-slate-700 leading-relaxed mb-3">
+            Kajian media 2017 (temu bual enam guru — <strong>data lama, konteks sahaja</strong>)
+            melaporkan:
+          </p>
+          <ul class="space-y-2.5 text-sm text-slate-700">
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span><strong>Tiada seorang pun</strong> daripada enam guru menerima bayaran lebih masa (OT) — kelas tambahan SPM/PMR, aktiviti kelab, latihan badan beruniform: semuanya percuma.</span></li>
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Kannan membelanjakan <strong>RM100–RM200 sebulan</strong> untuk bahan pengajaran dan jurnal.</span></li>
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Akmal membeli buku rujukan untuk murid kerana <strong>tiada mesin fotokopi</strong> di sekolahnya.</span></li>
+            <li class="flex gap-3"><span aria-hidden="true" class="mt-2 w-1.5 h-1.5 rounded-full bg-teal-700 shrink-0"></span><span>Guru pedalaman membeli makanan, pakaian sekolah dan alat tulis murid <strong>menggunakan wang sendiri</strong>; ada yang membeli kenderaan 4×4 untuk sampai ke sekolah.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 4 ============ -->
+      <section id="kesihatan-mental" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Kesihatan mental guru</h2>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Kajian Universiti Malaya (dibentangkan Parlimen, Dis 2025)</h3>
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Penemuan kajian UMCFD terhadap guru di tiga negeri</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Sampel</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Penemuan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr class="bg-teal-50"><td class="px-4 py-3 font-semibold text-slate-900">369 guru sekolah rendah Melaka</td><td class="px-4 py-3 text-slate-700"><strong class="text-teal-900">&gt;83%</strong> melaporkan mengalami burnout</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">294 guru Perak</td><td class="px-4 py-3 text-slate-700"><strong>22%</strong> gejala depresi, <strong>44%</strong> kebimbangan, <strong>17%</strong> tekanan</td></tr>
+              <tr><td class="px-4 py-3 text-slate-700">335 guru menengah Terengganu</td><td class="px-4 py-3 text-slate-700"><strong>25%</strong> depresi sangat tinggi, <strong>82%</strong> kebimbangan, <strong>2%</strong> tekanan</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-6 text-xs text-slate-600">
+          Sumber: Universiti Malaya Centre for Family Development (UMCFD), dibentangkan Jawatankuasa
+          Pilihan Khas Parlimen (Dis 2025).
+        </p>
+
+        <div class="grid gap-4 sm:grid-cols-3 mb-5">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Depresi klinikal</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">27.7%</p>
+            <p class="text-sm text-slate-600 mt-1">daripada 278 kakitangan institusi akademik Malaysia (BMC Public Health, 2024)</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Burnout guru</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">10.7%</p>
+            <p class="text-sm text-slate-600 mt-1">empat kali ganda pada wanita. Prevalens depresi/kebimbangan/tekanan 32%–68%.</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Gangguan suara</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">52.4%</p>
+            <p class="text-sm text-slate-600 mt-1">prevalens seumur hidup, 1,216 guru menengah (Universiti Malaya)</p>
+          </div>
+        </div>
+
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Kajian sistematik BMC Public Health (2024) menganalisis <strong>30 kajian</strong> tentang
+          kesihatan mental pendidik Malaysia dan mengenal pasti enam tema peramal:
+          konflik dan tuntutan kerja-keluarga, kesan pandemik, persekitaran kerja, kesihatan fizikal,
+          ciri personaliti, dan beban kerja.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Kajian Universiti Malaya mendapati depresi meningkatkan risiko gangguan suara
+          <strong>2.5 kali</strong>, kebimbangan <strong>2.08 kali</strong>, tekanan
+          <strong>1.94 kali</strong>.
+        </p>
+
+        <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed mb-5">
+          Guru yang bergelut dengan masalah mental <strong>menderita dalam diam</strong> kerana takut
+          dihakimi atau dibuang kerja. Punca yang disenaraikan: kepimpinan sekolah toksik, tuntutan
+          digital yang meningkat, dan gangguan daripada ibu bapa.
+          <span class="block mt-2 text-xs text-slate-600">NUTP (Jun 2025) — sumber kesatuan</span>
+        </blockquote>
+
+        <p class="text-xs text-slate-600">
+          Sumber: BMC Public Health — "A systematic review on mental health and its associated factors
+          among educators in Malaysia" (2024); Psychology in the Schools (prevalens burnout);
+          Universiti Malaya SPM — "The Silent Struggle" (7 Feb 2025); NUTP melalui Free Malaysia Today (22 Jun 2025).
+          <br /><strong>Nota:</strong> kajian kuantitatif nasional tentang burnout guru dengan sampel
+          besar dan tahun data jelas daripada KPM <strong>tidak ditemui</strong>. Angka yang ada
+          datang daripada kajian wilayah dan tinjauan sistematik.
+        </p>
+      </section>
+
+      <!-- ============ 5 ============ -->
+      <section id="suara-awam" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Suara awam — aduan dan kebanggaan</h2>
+
+        <div class="bg-amber-50 border-2 border-amber-600 rounded-xl p-5 mb-6">
+          <h3 class="font-bold text-amber-900 mb-2">Cara membaca bahagian ini</h3>
+          <p class="text-sm text-amber-900 leading-relaxed">
+            Petikan di bawah adalah <strong>suara individu dalam ruang awam</strong> — forum, akhbar,
+            siaran kesatuan. Ia dipaparkan sebagai gambaran tema berulang,
+            <strong>bukan</strong> mewakili semua guru Malaysia. Ia tidak boleh dijadikan asas
+            generalisasi kuantitatif. Semua dipetik daripada sumber yang sudah diterbitkan secara awam.
+          </p>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Aduan</h3>
+        <div class="space-y-4 mb-8">
+          <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed">
+            "Saya guru sains, tetapi saya juga perlu cover sukan, latihan budak olahraga, bola sepak,
+            takraw, kor akademik, jadi cikgu library. KPM sudah keluarkan surat pekeliling cikgu
+            library patut hanya mengajar 10 hingga 14 period, tetapi saya ada <strong>25 period</strong>
+            untuk diajar, setiap period 40 minit."
+            <span class="block mt-2 text-xs text-slate-600">Guru baharu KPM, forum awam r/Bolehland (Ogos 2025, 450 upvote, 86 komen). Beliau juga menyebut perjalanan 50 km pergi dan 50 km balik.</span>
+          </blockquote>
+
+          <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed">
+            "Dalam sekolah-sekolah saya bekerja setakat ini, satu 'breakdown' berlaku setiap dua atau
+            tiga tahun apabila seorang guru tidak dapat menahan lagi... Biasanya guru dengan isu paling
+            jelas ialah ibu tunggal yang terbeban, guru yang burnout, atau guru yang terlalu rajin —
+            yang tidak pernah boleh berkata tidak. Ramai daripada kami mempunyai tekanan darah tinggi,
+            dan setakat ini <strong>tiga rakan sekerja saya mengalami strok. Seorang meninggal dunia
+            kerananya</strong>."
+            <span class="block mt-2 text-xs text-slate-600">Guru dalam forum awam r/Malaysia (Jun 2025). Beliau juga menyatakan bekerja 6 hari seminggu, kadang-kadang Ahad; kelas malam biasa; SBP dan MRSM lebih teruk.</span>
+          </blockquote>
+
+          <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed">
+            "Berdasarkan pengalaman, saya selalu bangun pukul tiga atau empat pagi kerana mahu
+            menyiapkan laporan yang diminta oleh pihak atasan... Kadang-kadang saya masuk kelas,
+            tetapi saya tidak mengajar kerana sibuk menyiapkan laporan yang diperlukan segera."
+            <span class="block mt-2 text-xs text-slate-600">Marhaini Ahmad, 54, guru Bahasa Inggeris, 25 tahun berkhidmat — Sinar Daily (Jun 2023), guru bersara awal</span>
+          </blockquote>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Kebanggaan</h3>
+        <div class="space-y-4">
+          <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed">
+            "Saya nak murid-murid tahu yang guru mereka juga boleh melangkah ke pentas dunia."
+            <span class="block mt-2 text-xs text-slate-600">Cikgu Nazmi, finalis Hadiah Guru Global 2025, guru pedalaman — Sinar Bestari</span>
+          </blockquote>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-slate-700 leading-relaxed">
+              <strong>Lorenica Frenila Masundim</strong>, guru pedalaman Sabah — membangunkan aplikasi
+              pembelajaran sendiri untuk membantu murid menguasai tulisan Jawi, dan membeli makanan,
+              pakaian sekolah serta alat tulis murid dengan wang sendiri.
+            </p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Utusan Malaysia (14 Mei 2026)</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-slate-700 leading-relaxed">
+              Guru Besar SK Ulu Ansuan, Telupid, Sabah <strong>tinggal di stor berkeluasan
+              2.74 m × 4.87 m selama tiga tahun</strong> kerana sekolah dibina tanpa rumah guru.
+              Beliau kemudian memilih <strong>terus tinggal di stor</strong> walaupun rumah panjang
+              tujuh pintu untuk guru telah siap — kerana mahu mengutamakan guru dari luar Telupid.
+            </p>
+            <p class="mt-2 text-xs text-slate-600">Sumber: Suara Sarawak. KPM kemudian meluluskan pembinaan empat kuarters baharu dan projek naik taraf RM12.5 juta.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 6 ============ -->
+      <section id="inisiatif" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Inisiatif: dijanjikan vs sampai</h2>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Tujuh langkah KPM (Julai 2025, melalui MPPK)</h3>
+        <ol class="space-y-2.5 text-sm text-slate-700 mb-6">
+          <li class="flex gap-3"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">1</span><span>Mansuhkan program/acara sekolah berimpak rendah</span></li>
+          <li class="flex gap-3"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">2</span><span>Kurangkan kekerapan semakan pengurusan sekolah (SKPM)</span></li>
+          <li class="flex gap-3"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">3</span><span>Fleksibiliti dalam merekod kehadiran murid</span></li>
+          <li class="flex gap-3"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">4</span><span>Sambutan Hari Guru dihadkan ke peringkat kebangsaan dan sekolah</span></li>
+          <li class="flex gap-3"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">5</span><span>Ringkasan RPH hanya perlu mengandungi objektif, kandungan pengajaran dan refleksi</span></li>
+          <li class="flex gap-3"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">6</span><span>Perkukuh autonomi guru dalam perancangan, pelaksanaan PdP dan pentaksiran bilik darjah</span></li>
+          <li class="flex gap-3"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">7</span><span>Melalui pelaksanaan: <strong>&gt;11,000 pengawas peperiksaan</strong> daripada orang awam dilantik</span></li>
+        </ol>
+
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 mb-3">
+          <table class="min-w-full text-sm border border-stone-500 rounded-lg overflow-hidden">
+            <caption class="sr-only">Status inisiatif untuk guru: janji vs apa yang dilaporkan</caption>
+            <thead class="bg-stone-100">
+              <tr>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Inisiatif</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Janji</th>
+                <th scope="col" class="text-left px-4 py-3 font-bold text-slate-900 border-b border-stone-500">Status dilaporkan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-200">
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">Pengawas peperiksaan bukan guru</td><td class="px-4 py-3 text-slate-700">Sasaran 20%</td><td class="px-4 py-3 text-slate-700"><strong>Belum tercapai.</strong> 2023: 7,211 sukarelawan; 2024: <strong>2,780</strong> sahaja</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">MySTEP Pembantu Guru</td><td class="px-4 py-3 text-slate-700">Kurangkan kerja perkeranian</td><td class="px-4 py-3 text-slate-700"><strong>564 pembantu di 282 sekolah</strong> (sekolah &gt;1,500 murid sahaja)</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">Pembantu Warden Asrama</td><td class="px-4 py-3 text-slate-700">600 orang MySTEP</td><td class="px-4 py-3 text-slate-700">Dilantik (Okt–Nov 2025)</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">SSDM dipermudah</td><td class="px-4 py-3 text-slate-700">Kembalikan fungsi asal: rekod salah laku sahaja</td><td class="px-4 py-3 text-slate-700">Dilaksanakan — catatan amalan baik murid dihapuskan</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">SPLKPM dimansuhkan</td><td class="px-4 py-3 text-slate-700">Sistem pengurusan latihan</td><td class="px-4 py-3 text-slate-700"><strong>Dimansuhkan Dis 2025</strong> (diperkenalkan awal 2024)</td></tr>
+              <tr><td class="px-4 py-3 font-semibold text-slate-900">Mansuh program berimpak rendah</td><td class="px-4 py-3 text-slate-700">—</td><td class="px-4 py-3 text-slate-700">Sept 2026: KPM umum mansuhkan pertandingan seperti "tandas tercantik"</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mb-6 text-xs text-slate-600 sm:hidden">Geser jadual ke kiri untuk melihat lebih banyak.</p>
+
+        <div class="bg-white border border-stone-500 rounded-xl p-5 mb-5">
+          <h3 class="font-bold text-slate-900 mb-2">Nota konflik angka</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            MySTEP Pembantu Guru disebut sebagai <strong>548 pembantu di &gt;200 sekolah</strong>
+            (The Star, Nov 2025) dan <strong>564 pembantu di 282 sekolah menengah</strong>
+            (Utusan/Parlimen, Nov 2025). Dua angka berbeza dari dua tarikh berbeza.
+          </p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-3 mb-5">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">IKG (Nov 2024–Jan 2025)</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">77.65/100</p>
+            <p class="text-sm text-slate-600 mt-1">23,625 responden guru</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">GCE — kos ditanggung KPM</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">RM40 / RM100</p>
+            <p class="text-sm text-slate-600 mt-1">seorang guru untuk Level 1 dan Level 2</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">DELIMa 3.0 (Julai 2026)</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">97.73%</p>
+            <p class="text-sm text-slate-600 mt-1">kadar pengguna aktif guru, berbanding murid 37.32%</p>
+          </div>
+        </div>
+
+        <p class="text-slate-600 leading-relaxed mb-3">
+          Inisiatif Hari Guru 2026 (12 inisiatif) termasuk: anugerah latihan persekutuan khas untuk
+          guru di kawasan sukar; <strong>RM1 juta</strong> untuk Network Offline Digital Environment
+          di sekolah luar bandar dan pulau; <strong>RM169 juta</strong> peranti kokurikulum;
+          <strong>RM100 juta</strong> naik taraf bilik guru; <strong>RM50 juta</strong> kuarters guru;
+          <strong>RM10.5 juta</strong> bahan bacaan prasekolah.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          Sekolah daif seluruh negara: <strong>1,061 sekolah</strong> dikategorikan
+          <strong>Skala Tujuh</strong> (bangunan tidak selamat dari segi struktur) setakat suku pertama 2026.
+          Sabah: <strong>245 daripada 416</strong> sekolah daif telah siap diganti (Sept 2026).
+          Sarawak: <strong>85 sekolah daif kritikal</strong> siap dibangun semula (Julai 2026).
+        </p>
+
+        <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed">
+          Tujuh langkah KPM <strong>"telah membantu mengurangkan bebanan guru kita, namun masih banyak
+          lagi penambahan yang perlu dibuat."</strong>
+          <span class="block mt-2 text-xs text-slate-600">NUTP (Julai 2025) — sumber kesatuan</span>
+        </blockquote>
+      </section>
+
+      <!-- ============ 7 ============ -->
+      <section id="dlp-guru" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Isu DLP dari sudut guru</h2>
+
+        <div class="grid gap-4 sm:grid-cols-3 mb-5">
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Sarawak, rendah</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">45%</p>
+            <p class="text-sm text-slate-600 mt-1">guru Bahasa Inggeris, Sains dan Matematik adalah <strong>bukan opsyen</strong> (tidak terlatih mengajar subjek tersebut)</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Sarawak, menengah</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">24%</p>
+            <p class="text-sm text-slate-600 mt-1">guru juga bukan opsyen</p>
+          </div>
+          <div class="bg-white border border-stone-500 rounded-xl p-5">
+            <p class="text-xs font-bold text-slate-600 uppercase tracking-wide mb-2">Sarawak — enrolmen STEM</p>
+            <p class="text-2xl font-bold text-teal-700 tabular-nums stat-num">32%</p>
+            <p class="text-sm text-slate-600 mt-1">di Tingkatan 4</p>
+          </div>
+        </div>
+
+        <p class="text-slate-600 leading-relaxed mb-4">
+          Infrastruktur sains Sarawak: <strong>24 sekolah menengah</strong> tanpa makmal sains tulen;
+          <strong>585 sekolah rendah</strong> tanpa bilik sains; kekurangan bahan guna habis dan juruteknik.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 mb-3">Keputusan UP-DLP pertama Sarawak (Okt 2025)</h3>
+        <p class="text-sm text-slate-700 leading-relaxed mb-3">
+          <strong>29,002 murid</strong> dari <strong>1,050 sekolah</strong>. Kadar lulus:
+        </p>
+        <div class="space-y-3 mb-4">
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <span class="text-sm font-semibold text-slate-900">Bahasa Inggeris — lulus 91%</span>
+              <span class="text-sm font-bold text-teal-700 tabular-nums stat-num">5,241 gred A (18.1%)</span>
+            </div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:91%"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <span class="text-sm font-semibold text-slate-900">Sains — lulus 84.7%</span>
+              <span class="text-sm font-bold text-teal-700 tabular-nums stat-num">199 gred A</span>
+            </div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:84.7%"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <span class="text-sm font-semibold text-slate-900">Matematik — lulus 61%</span>
+              <span class="text-sm font-bold text-teal-700 tabular-nums stat-num">1,734 gred A</span>
+            </div>
+            <div class="h-3 rounded-full bg-stone-200 overflow-hidden"><div class="h-full bg-teal-700" style="width:61%"></div></div>
+          </div>
+        </div>
+        <p class="text-slate-600 leading-relaxed mb-5">
+          <strong>Sekolah bandar lebih baik daripada luar bandar dalam ketiga-tiga subjek.</strong>
+        </p>
+
+        <blockquote class="bg-white border border-stone-500 rounded-xl p-5 text-slate-700 leading-relaxed">
+          "Clause 12.2.8 telah ditambah dalam garis panduan baharu yang mewajibkan sekolah mempunyai
+          satu kelas non-DLP untuk Tahun Satu dan Tingkatan Satu. Sama ada ibu bapa mahukannya atau
+          tidak adalah tidak relevan. Kehendak ibu bapa, yang merupakan roh DLP, telah diabaikan
+          secara terang-terangan."
+          <span class="block mt-2 text-xs text-slate-600">Datin Noor Azimah Abdul Rahim, Pengerusi PAGE — The Edge (Mei 2024)</span>
+        </blockquote>
+
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Respons rasmi KPM (Jun 2024): garis panduan DLP dalam <strong>SPI Bil. 5 Tahun 2024</strong>
+          (19 Mac 2024) mewajibkan setiap sekolah menyediakan sekurang-kurangnya satu kelas di setiap
+          Tahun/Tingkatan yang melaksanakan PdP dalam Bahasa Kebangsaan atau bahasa ibunda, bermula
+          Tahun 1 dan Tingkatan 1 sesi 2024/2025.
+        </p>
+        <p class="mt-3 text-xs text-slate-600">
+          Sumber: PAGE Malaysia / The Edge (13 Mei 2024); The Star (21 Nov 2025); KPM — Kenyataan Media
+          "KPM Komited Tangani Isu Pelaksanaan DLP Di Sekolah" (6 Jun 2024); Jabatan Premier Sarawak (UKAS).
+          <br /><strong>Nota:</strong> Sarawak menerima <strong>RM18 juta</strong> untuk DLP (April 2024)
+          sementara Sabah dan semenanjung tidak dibelanjakan untuk DLP.
+        </p>
+      </section>
+
+      <!-- ============ 8 ============ -->
+      <section id="hantar-guru" class="anchor-sasaran">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">Hantar tulisan anda</h2>
+
+        <div class="bg-white border border-stone-500 rounded-xl p-6">
+          <p class="text-slate-700 leading-relaxed mb-5">
+            Untuk guru, kami guna <strong>emel</strong> dan bukan borang tanpa nama — kerana pengenalan
+            penulis disemak. Ini melindungi daripada penyamaran dan membolehkan nama anda dipaparkan
+            dengan kredit penuh, seperti pakar dalam artikel.
+          </p>
+
+          <dl class="space-y-4 text-sm mb-6">
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold text-slate-900 sm:w-40 shrink-0">Pengenalan penulis</dt>
+              <dd class="text-slate-700">Wajib, dan disemak</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold text-slate-900 sm:w-40 shrink-0">Nama dipaparkan</dt>
+              <dd class="text-slate-700">Boleh, dengan kebenaran anda</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold text-slate-900 sm:w-40 shrink-0">Saluran hantar</dt>
+              <dd class="text-slate-700">Emel, bukan borang</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+              <dt class="font-bold text-slate-900 sm:w-40 shrink-0">Masa moderasi</dt>
+              <dd class="text-slate-700"><strong>7 hari bekerja</strong> — lebih lama, kerana pengesahan</dd>
+            </div>
+          </dl>
+
+          <a href="mailto:hello@jejakedu.my?subject=Suara%20Guru%20%E2%80%94%20tulisan%20saya"
+             class="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-3 rounded-lg
+                    bg-teal-700 hover:bg-teal-800 text-white font-semibold transition-colors
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700
+                    focus-visible:ring-offset-2">
+            Hantar emel kepada kami
+          </a>
+
+          <p class="mt-4 text-sm text-slate-600 leading-relaxed">
+            Kalau anda lebih selesa tanpa nama, guna ruangan
+            <a href="/suara-pelajar.html#hantar" class="font-semibold text-teal-700 hover:text-teal-800 hover:underline underline-offset-2">Suara Pelajar</a>
+            — borang itu memang direka untuk tanpa nama. Untuk guru, kami tidak menyediakan laluan
+            tanpa nama kerana pengenalan disemak; jika tidak, sesiapa boleh menulis sebagai "seorang guru".
+          </p>
+        </div>
+
+        <div class="mt-6 bg-amber-50 border-2 border-amber-600 rounded-xl p-5">
+          <h3 class="text-sm font-bold text-amber-900 mb-2">Kalau ini tentang anda sekarang</h3>
+          <p class="text-sm text-amber-900 leading-relaxed mb-3">
+            Kami boleh baca tulisan anda, tetapi kami tidak boleh bantu serta-merta. Kalau anda dalam
+            tekanan atau rasa tidak selamat sekarang:
+          </p>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="tel:15999" class="inline-flex items-center gap-2 min-h-11 font-semibold text-amber-900 underline underline-offset-2 hover:text-amber-800">Talian Kasih 15999</a>
+              <span class="text-amber-900">— 24 jam, percuma</span>
+            </li>
+            <li>
+              <a href="tel:0376272929" class="inline-flex items-center gap-2 min-h-11 font-semibold text-amber-900 underline underline-offset-2 hover:text-amber-800">Befrienders 03-7627 2929</a>
+              <span class="text-amber-900">— mendengar tanpa menghakimi</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <aside class="mt-12 bg-stone-100 border border-stone-500 rounded-xl p-6" aria-labelledby="rujukan-tajuk">
+      <h2 id="rujukan-tajuk" class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Sumber utama</h2>
+      <ol class="space-y-2.5">
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">1</span><span class="text-sm text-slate-700">Hamdan Hamami &amp; M. Al-Muz-Zammil Yassin (UTM) — "Beban tugas sampingan guru di sekolah rendah di negeri Johor", Jurnal Kepimpinan Pendidikan (Jan 2022)</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">2</span><span class="text-sm text-slate-700">BMC Public Health — "A systematic review on mental health and its associated factors among educators in Malaysia" (2024)</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">3</span><span class="text-sm text-slate-700">Universiti Malaya Centre for Family Development (UMCFD) — dibentangkan Jawatankuasa Pilihan Khas Parlimen (Dis 2025); Universiti Malaya SPM — "The Silent Struggle" (Feb 2025)</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">4</span><span class="text-sm text-slate-700">Bernama — MOE Outlines Seven Measures To Reduce Teachers' Workload (10 Julai 2025); KPM — Kenyataan Media Belanjawan 2025</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">5</span><span class="text-sm text-slate-700">NUTP melalui Malay Mail, TVS Sarawak, Free Malaysia Today, Education International (Julai–Sept 2025)</span></li>
+        <li class="flex gap-3 leading-relaxed"><span class="text-xs font-bold text-slate-600 tabular-nums shrink-0 w-5 pt-0.5" aria-hidden="true">6</span><span class="text-sm text-slate-700">PAGE Malaysia / The Edge (13 Mei 2024); The Star — S'wak pupils do well in bilingual test (21 Nov 2025)</span></li>
+      </ol>
+      <div class="mt-5 pt-4 border-t border-stone-200 space-y-2 text-xs text-slate-600">
+        <p><strong>SENTIMEN vs DATA.</strong> Angka ~418,000 guru terbeban dan ~10,000 kekurangan guru datang daripada NUTP (kesatuan), bukan KPM. KPM menggunakan angka kadar pengisian. Kedua-duanya dipaparkan dengan atribusi jelas.</p>
+        <p><strong>Komen forum</strong> dipaparkan sebagai gambaran tema berulang, bukan wakil semua guru Malaysia.</p>
+        <p><strong>Bilangan kaunselor sekolah</strong> dan nisbah kaunselor:pelajar daripada sumber rasmi <strong>tidak ditemui</strong>.</p>
+      </div>
+    </aside>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href="/suara-pelajar.html" class="inline-flex items-center justify-center min-h-11 px-5 py-3 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2">
+        Suara Pelajar
+      </a>
+      <a href="/benchmarking.html" class="inline-flex items-center justify-center min-h-11 px-5 py-3 rounded-lg bg-white border border-slate-500 text-slate-700 hover:bg-stone-100 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2">
+        Penanda aras antarabangsa
+      </a>
+    </div>
+
+  </div>
+</div>

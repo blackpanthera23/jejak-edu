@@ -1,0 +1,191 @@
+<!--
+  ============================================================================
+  KOMPONEN: banner-kerajaan.html
+  Portal: Jejak Edu
+  Guna: sisip sebagai partial EJS selepas tag <body>, sebelum <nav>.
+        Lihat bahagian "Cara memasang" dalam banner-analytics.md untuk
+        sintaks tepat. (Baris ini sengaja TIDAK mengandungi tag EJS —
+        tag di dalam komen HTML tetap akan dilaksanakan oleh EJS dan
+        menyebabkan rekursi tak terhingga.)
+  ============================================================================
+
+  AMARAN PENTING — BACA DULU
+  ----------------------------------------------------------------------------
+  Komponen ini SENGAJA TIDAK:
+    - memaparkan Jata Negara, logo Kementerian Digital, logo MyDIGITAL, atau
+      logo mana-mana agensi kerajaan;
+    - mendakwa "disokong oleh", "dijalin dengan", "diluluskan", atau
+      "bekerjasama dengan" kerajaan;
+    - menggunakan perkataan "rasmi" untuk portal Jejak Edu.
+
+  Sebab: Akta Lambang dan Nama (Mencegah Penggunaan Tak Wajar) 1963 [Akta 414]
+  melarang penggunaan lambang/logo tertentu tanpa kebenaran bertulis, bagi
+  maksud profesional atau perniagaan. Dakwaan "disokong oleh kerajaan" tanpa
+  kebenaran juga boleh dikira salah nyataan rasmi.
+
+  Apa yang komponen ini buat: menyatakan dengan jujur bahawa Jejak Edu ialah
+  sumber bebas, dan menyokong aspirasi literasi digital negara — sambil
+  memaut keluar ke platform rasmi supaya pelawat pergi ke sumber sebenar.
+  ============================================================================
+-->
+
+<section
+  x-data="bannerKerajaan()"
+  x-show="!ditutup"
+  x-cloak
+  x-transition.opacity.duration.200ms
+  role="region"
+  aria-labelledby="banner-kerajaan-tajuk"
+  class="bg-teal-50 border-b border-teal-200"
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-start gap-3">
+
+      <!-- Ikon: abstrak, BUKAN lambang kerajaan -->
+      <span class="shrink-0 w-9 h-9 rounded-lg bg-teal-700 flex items-center justify-center mt-0.5"
+            aria-hidden="true">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
+      </span>
+
+      <div class="min-w-0 flex-1">
+        <h2 id="banner-kerajaan-tajuk"
+            class="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+          Jejak Edu menyokong aspirasi literasi digital rakyat Malaysia
+        </h2>
+
+        <p class="mt-1.5 text-sm text-slate-700 leading-relaxed">
+          Kami sumber bebas dan <strong class="font-semibold">bukan laman rasmi kerajaan</strong>.
+          Untuk kursus digital percuma daripada Kementerian Digital, layari
+          <a href="https://rakyatdigital.gov.my/?utm_source=jejak-edu&utm_medium=banner&utm_campaign=rakyat-digital-literasi"
+             @click="rekodKlik()"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex items-center min-h-11 font-semibold text-teal-800 underline
+                    underline-offset-2 decoration-teal-700 hover:text-teal-900 rounded
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700
+                    focus-visible:ring-offset-2 focus-visible:ring-offset-teal-50">
+            Rakyat Digital
+            <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                 aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+            <span class="sr-only">(laman rasmi, buka dalam tab baharu)</span>
+          </a>
+          <span class="text-slate-600">— portal rasmi kerajaan, dibuka dalam tab baharu.</span>
+        </p>
+
+        <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+          Banner ini disediakan oleh pasukan editorial Jejak Edu sendiri.
+          Ia bukan bahan kerajaan dan tidak ditaja oleh mana-mana agensi.
+        </p>
+      </div>
+
+      <!-- Butang tutup: sasaran ketik 44x44px (min-h-11 min-w-11) -->
+      <button
+        type="button"
+        @click="tutup()"
+        class="shrink-0 inline-flex items-center justify-center min-h-11 min-w-11 -mt-1 -mr-1
+               rounded-lg text-slate-700 hover:text-slate-900 hover:bg-teal-100 transition-colors
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700
+               focus-visible:ring-offset-2 focus-visible:ring-offset-teal-50"
+        aria-label="Tutup notis sokongan ini"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<!--
+  ============================================================================
+  SKRIP: tampal ke dalam src/main.js (JANGAN muat dalam fail ini — main.js
+  sudah diurus oleh subagent lain)
+  ============================================================================
+
+  Alpine.data("bannerKerajaan", () => ({
+    KUNCI: "jejak-edu:banner-kerajaan:tutup",
+    ditutup: false,
+    _terlihat: false,
+
+    // NOTA: URL Rakyat Digital diletak sebagai href LITERAL dalam HTML,
+    // bukan diikat dengan :href. Sebabnya: kalau JavaScript gagal dimuat,
+    // pautan mesti tetap berfungsi. Ini juga menjadikan UTM kelihatan
+    // kepada crawler dan boleh disemak dengan curl.
+
+    init() {
+      // 1. Baca pilihan pengguna. Guna try/catch — Safari mod privasi boleh
+      //    membaling ralat pada localStorage.
+      try {
+        this.ditutup = localStorage.getItem(this.KUNCI) === "1";
+      } catch (e) {
+        this.ditutup = false;
+      }
+
+      // 2. Hanya ukur kalau banner benar-benar dipaparkan.
+      if (this.ditutup) return;
+
+      // 3. Ukur "impression" SEKALI sahaja, selepas ia benar-benar kelihatan.
+      //    IntersectionObserver elak kira banner yang tidak pernah di-skrol.
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const ent of entries) {
+            if (ent.isIntersecting && !this._terlihat) {
+              this._terlihat = true;
+              this._hantar("banner_kerajaan_lihat", {
+                banner_id: "rakyat-digital",
+                lokasi: this._lokasi(),
+              });
+              io.disconnect();
+            }
+          }
+        }, { threshold: 0.5 });
+        io.observe(this.$el);
+      } else {
+        this._terlihat = true;
+        this._hantar("banner_kerajaan_lihat", { banner_id: "rakyat-digital", lokasi: this._lokasi() });
+      }
+    },
+
+    _lokasi() {
+      // Buang base path GitHub Pages dan slash hadapan supaya nilai konsisten.
+      const p = location.pathname.replace(/^\/jejak-edu/, "").replace(/^\//, "");
+      return p === "" || p === "index.html" ? "homepage" : p;
+    },
+
+    _hantar(nama, param) {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", nama, param || {});
+      }
+    },
+
+    rekodKlik() {
+      this._hantar("banner_kerajaan_klik", {
+        banner_id: "rakyat-digital",
+        destinasi: "rakyatdigital.gov.my",
+        lokasi: this._lokasi(),
+        outbound: true,
+      });
+    },
+
+    tutup() {
+      this.ditutup = true;
+      this._hantar("banner_kerajaan_tutup", {
+        banner_id: "rakyat-digital",
+        lokasi: this._lokasi(),
+      });
+      try {
+        localStorage.setItem(this.KUNCI, "1");
+      } catch (e) {
+        // Mod privasi: banner akan muncul semula. Itu OK — jangan pecahkan halaman.
+      }
+    },
+  }));
+  ============================================================================
+-->

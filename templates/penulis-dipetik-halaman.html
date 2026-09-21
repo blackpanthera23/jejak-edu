@@ -1,0 +1,40 @@
+<article class="py-12">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <a href="/penulis-dipetik.html" class="inline-flex items-center gap-1.5 min-h-11 text-sm text-slate-600 hover:text-teal-700 transition-colors mb-6 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      Semua penulis yang kami petik
+    </a>
+
+    <header class="pb-8 border-b border-stone-500">
+      <p class="text-xs font-bold text-teal-700 uppercase tracking-wide mb-2">Penulis yang kami petik</p>
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight mb-2"><%= nama %></h1>
+      <%- perananBlok %>
+      <p class="text-slate-600 leading-relaxed">
+        Karya beliau menjadi sumber untuk <strong class="font-semibold text-slate-900"><%= bilanganArtikel %> artikel</strong>
+        Jejak Edu. Setiap pautan di bawah membawa anda ke karya penuh asal &mdash; bukan ke ringkasan kami.
+      </p>
+    </header>
+
+    <section class="mt-10" aria-labelledby="karya-tajuk">
+      <h2 id="karya-tajuk" class="text-xl font-bold text-slate-900 mb-5">Karya yang kami rujuk</h2>
+      <%- senaraiKarya %>
+    </section>
+
+    <section class="mt-12" aria-labelledby="artikel-tajuk">
+      <h2 id="artikel-tajuk" class="text-xl font-bold text-slate-900 mb-5">Artikel Jejak Edu yang memetik karya ini</h2>
+      <%- senaraiArtikel %>
+    </section>
+
+    <aside class="mt-12 bg-stone-100 border border-stone-500 rounded-xl p-6 not-prose">
+      <h2 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-3">Pembetulan atau penarikan</h2>
+      <p class="text-sm text-slate-700 leading-relaxed mb-4">
+        Kalau anda pemilik karya ini dan mahu kami betulkan kredit, tarik balik petikan, atau keluarkan
+        halaman ini &mdash; hubungi <a href="mailto:hello@jejakedu.my" class="font-semibold text-teal-700 hover:text-teal-800 underline underline-offset-2">hello@jejakedu.my</a>.
+        Kami tidak akan berhujah tentang hak cipta dengan anda; kami akan betulkan.
+      </p>
+      <a href="/sumber-kredit.html" class="inline-flex items-center min-h-11 text-sm font-semibold text-teal-700 hover:text-teal-800 underline underline-offset-2">
+        Baca polisi sumber &amp; kredit kami &rarr;
+      </a>
+    </aside>
+  </div>
+</article>

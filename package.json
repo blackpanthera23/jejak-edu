@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/rewrite-base.mjs",
+    "build": "vite build && node scripts/rewrite-base.mjs && node scripts/gen-sitemap.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320" role="img" aria-label="Avatar NA">
+  <rect width="320" height="320" fill="#115e59"/>
+  <circle cx="160" cy="124" r="52" fill="#ffffff" fill-opacity="0.92"/>
+  <path d="M52 300c0-62 48-108 108-108s108 46 108 108z" fill="#ffffff" fill-opacity="0.92"/>
+  <text x="160" y="172" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="76" font-weight="700" fill="#115e59">NA</text>
+</svg>

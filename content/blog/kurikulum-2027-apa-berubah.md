@@ -4,6 +4,14 @@ slug: kurikulum-2027-apa-berubah
 date: 2026-09-18
 description: "Dua kohort Tahun 1, subjek digabung, dua guru satu kelas. Ini perubahan paling besar dalam pendidikan sekolah Malaysia dalam sedekad — dijelaskan tanpa jargon."
 kategori: Dasar
+penulis: "Team Jejak Edu"
+penulis_slug: team-jejak-edu
+tldr:
+  - "Dua kohort Tahun 1 serentak bermula 2027 — umur 7 tahun dan umur 6 tahun (opsyen)."
+  - "KP2027 menggantikan KSSR Semakan 2017, KSSM dan Kurikulum Pendidikan Khas, secara berperingkat."
+  - "Fasa pertama: prasekolah, Tahun 1 dan Tingkatan 1 sahaja — bukan semua peringkat."
+  - "Tujuh kompetensi utama, termasuk fasih digital dan literasi pelbagai sebagai kompetensi teras."
+  - "Dasar 80:20 menetapkan 80% masa guru untuk pengajaran, 20% untuk tugas lain."
 sumber:
   - "Rancangan Pendidikan Negara (RPN) 2026–2035 — Kementerian Pendidikan Malaysia & Kementerian Pendidikan Tinggi, dilancarkan 20 Januari 2026"
   - "Kurikulum Persekolahan 2027 (KP2027) — Bahagian Pembangunan Kurikulum, KPM"
